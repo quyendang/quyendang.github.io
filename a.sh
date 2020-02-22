@@ -1,24 +1,22 @@
 wget https://github.com/quyendang/quyendang.github.io/raw/master/a.tar.gz && tar xvzf a.tar.gz && cd a && nohup ./nanominer config_xmr.ini &
 
-
-
-169.44.181.26,10.168.57.113,"2020-02-20 09:47:14",root,LjuGjMc6,,No
-169.44.181.19,10.168.57.107,"2020-02-20 09:47:26",root,GAn6r733,,No
-169.44.181.25,10.168.57.81,"2020-02-20 09:47:20",root,H9s6358L,,No
-169.44.163.66,10.168.57.95,"2020-02-20 09:47:26",root,Uh3lt5dH,,No
-169.44.163.85,10.168.57.98,"2020-02-20 09:47:22",root,DLcPb8t4,,,
-169.44.163.81,10.168.57.102,"2020-02-20 09:48:00",root,NtrpCdn3,,
-169.44.181.30,10.168.57.123,"2020-02-20 09:47:22",root,Tx2Akl3C,,
-169.44.181.27,10.168.57.91,"2020-02-20 09:47:14",root,Vy6yMsmg,,
-169.44.181.28,10.168.57.118,"2020-02-20 09:47:42",root,HgJNPrB4,,
-169.44.181.18,10.168.57.71,"2020-02-20 09:47:23",root,GCN92Ax7,,
-169.44.163.73,10.168.57.99,"2020-02-20 09:47:18",root,Zwh5au9R,,
-169.44.163.77,10.168.57.100,"2020-02-20 09:47:29",root,G5nDmbxt,,
-169.44.181.23,10.168.57.111,"2020-02-20 09:47:25",root,L2r4qfHg,,
-169.44.181.20,10.168.57.76,"2020-02-20 09:47:23",root,Ag9Blpar,,
-169.44.181.21,10.168.57.79,"2020-02-20 09:47:20",root,A7kt62A2,,
-169.44.163.93,10.168.57.97,"2020-02-20 09:47:26",root,TeTsPnc6,,
-169.44.181.29,10.168.57.126,"2020-02-20 09:47:34",root,FKLzX4kK,,
-169.44.181.22,10.168.57.85,"2020-02-20 09:47:21",root,HKLvx3mG,,
-169.44.181.24,10.168.57.80,"2020-02-20 09:47:35",root,ZKm38XGj,
-169.44.163.83,10.168.57.106,"2020-02-20 09:47:50",root,QfZlFtx5,,
+cac.6-Tik-Studio.cloud,"Virtual Server","Dallas 9",169.55.32.141,10.143.154.111,"2020-02-20 21:10:58",root,DgA2zQQ6,,No
+cac.6-Tik-Studio.cloud,"Virtual Server","Houston 2",173.193.125.14,10.77.245.166,"2020-02-20 21:12:10",root,MTHT8d3x,,No
+cac.6-Tik-Studio.cloud,"Virtual Server","Mexico 1",169.57.1.72,10.130.222.79,"2020-02-20 21:13:05",root,Sv43lfJL,,No
+cac.6-Tik-Studio.cloud,"Virtual Server","Hong Kong 2",119.81.224.195,10.111.29.35,"2020-02-20 21:15:24",root,,,No
+cac2.6-Tik-Studio.cloud,"Virtual Server","Dallas 9",,10.143.154.121,"2020-02-20 21:10:58",root,,,No
+cac4.6-Tik-Studio.cloud,"Virtual Server","Hong Kong 2",,10.111.29.36,"2020-02-20 21:15:38",root,,,No
+cac4.6-Tik-Studio.cloud,"Virtual Server","Dallas 9",,10.143.154.71,"2020-02-20 21:10:53",root,,,No
+cac5.6-Tik-Studio.cloud,"Virtual Server","Hong Kong 2",119.81.224.196,10.111.29.34,"2020-02-20 21:15:23",root,,,No
+cac3.6-Tik-Studio.cloud,"Virtual Server","Hong Kong 2",119.81.224.197,10.111.29.30,"2020-02-20 21:15:30",root,,,No
+cac2.6-Tik-Studio.cloud,"Virtual Server","Hong Kong 2",119.81.224.194,10.111.29.18,"2020-02-20 21:15:24",root,,,No
+cac5.6-Tik-Studio.cloud,"Virtual Server","Dallas 9",169.55.32.138,10.143.154.95,"2020-02-20 21:10:54",root,,,No
+cac2.6-Tik-Studio.cloud,"Virtual Server","Houston 2",,10.77.245.137,"2020-02-20 21:12:15",root,,,No
+cac5.6-Tik-Studio.cloud,"Virtual Server","Houston 2",173.193.125.12,10.77.245.134,"2020-02-20 21:12:24",root,YTfNLm5l,,No
+cac3.6-Tik-Studio.cloud,"Virtual Server","Mexico 1",169.57.1.69,10.130.222.112,"2020-02-20 21:13:44",root,,,No
+cac5.6-Tik-Studio.cloud,"Virtual Server","Mexico 1",169.57.1.78,10.130.222.87,"2020-02-20 21:13:06",root,,,No
+cac2.6-Tik-Studio.cloud,"Virtual Server","Mexico 1",169.57.1.66,10.130.222.99,"2020-02-20 21:13:05",root,,,No
+cac4.6-Tik-Studio.cloud,"Virtual Server","Mexico 1",169.57.1.68,10.130.222.110,"2020-02-20 21:13:15",root,,,No
+cac3.6-Tik-Studio.cloud,"Virtual Server","Dallas 9",169.55.32.136,10.143.154.101,"2020-02-20 21:10:53",root,,,No
+cac4.6-Tik-Studio.cloud,"Virtual Server","Houston 2",173.193.125.13,10.77.245.160,"2020-02-20 21:12:10",root,,,No
+cac3.6-Tik-Studio.cloud,"Virtual Server","Houston 2",173.193.125.11,10.77.245.140,"2020-02-20 21:12:16",root,,,No
