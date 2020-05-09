@@ -41,7 +41,7 @@ Click on Tipping Banner, then on “Customize” and make sure to put in “Link
 
 ## If you want to know more about Basic Attention Token see this article:
 
-[What is Basic Attention Token?|ESBC](https://medium.com/@Censed/what-is-basic-attention-token-esbc-274339e94300)
+[What is Basic Attention Token](https://medium.com/@Censed/what-is-basic-attention-token-esbc-274339e94300)
 
 ✓ It is an excellent way to start generating your first earnings in cryptocurrency (legitimately and helping to know more about this world).
 ✓ Basic Attention Token (BAT) now has 100,000 publishers who accept the token as a form of payment and tips for their services. BAT is the native token of the Brave browser and users who use the browser can now earn tokens by viewing advertisements.
