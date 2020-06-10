@@ -13,6 +13,24 @@
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
 
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+    <script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({article:'auto'});
+  !function (e, f, u, i) {
+    if (!document.getElementById(i)){
+      e.async = 1;
+      e.src = u;
+      e.id = i;
+      f.parentNode.insertBefore(e, f);
+    }
+  }(document.createElement('script'),
+  document.getElementsByTagName('script')[0],
+  '//cdn.taboola.com/libtrc/ncsmusicasia/loader.js',
+  'tb_loader_script');
+  if(window.performance && typeof window.performance.mark == 'function')
+    {window.performance.mark('tbl_ic');}
+</script>
+
   </head>
 
   <body>
@@ -37,6 +55,16 @@
     <div id="main" role="main" class="container">
       {{ content }}
     </div>
+<div id="taboola-below-article-thumbnails-1"></div>
+<script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({
+    mode: 'thumbnails-a',
+    container: 'taboola-below-article-thumbnails-1',
+    placement: 'Below Article Thumbnails 1',
+    target_type: 'mix'
+  });
+</script>
 
     <div class="wrapper-footer">
       <div class="container">
@@ -47,5 +75,9 @@
     </div>
 
     {% include analytics.html %}
+    <script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({flush: true});
+</script>
   </body>
 </html>
