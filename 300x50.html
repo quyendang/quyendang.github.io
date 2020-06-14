@@ -26,20 +26,23 @@
 </head>
 
 <body style="margin:0;padding:0;background:white;margin-top:-6px">
-    <div id="taboola-thumbs-feed"></div>
-    <script type="text/javascript">
-        window._taboola = window._taboola || [];
-        _taboola.push({
-            mode: 'thumbnails-b',
-            container: "taboola-thumbs-feed",
-            placement: "Feed without video",
-            target_type: "mix",
-        });
-    </script>
-    <script type="text/javascript">
-        window._taboola = window._taboola || [];
-        _taboola.push({ flush: true });
-    </script>
+    <div id="taboola-right-rail-thumbnails"></div>
+
+<script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({
+    mode: 'thumbnails-b',
+    container: 'taboola-right-rail-thumbnails',
+    placement: 'Right Rail Thumbnails',
+    target_type: 'mix'
+  });
+</script>
+
+<script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({flush: true});
+</script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74680515-9"></script>
 <script>
