@@ -1,84 +1,90 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+    <head>
+        <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
 
-    {% include meta.html %}
+        {% include meta.html %}
 
-    <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+        <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
-    <meta name="propeller" content="edf1b807fe43ceecb5966fc14a5caa6f">
-    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
-    <meta name="google-site-verification" content="S02ea1cGt2wRjrpRrcZlqIEUaoo_7a8Y30NmvXbL4XE" />
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
-    <script type="text/javascript">
-  window._taboola = window._taboola || [];
-  _taboola.push({article:'auto'});
-  !function (e, f, u, i) {
-    if (!document.getElementById(i)){
-      e.async = 1;
-      e.src = u;
-      e.id = i;
-      f.parentNode.insertBefore(e, f);
-    }
-  }(document.createElement('script'),
-  document.getElementsByTagName('script')[0],
-  '//cdn.taboola.com/libtrc/ncsmusicasia/loader.js',
-  'tb_loader_script');
-  if(window.performance && typeof window.performance.mark == 'function')
-    {window.performance.mark('tbl_ic');}
-</script>
-<script data-ad-client="ca-pub-7636415042281150" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  </head>
+        <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+        <meta name="propeller" content="edf1b807fe43ceecb5966fc14a5caa6f" />
+        <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+        <meta name="google-site-verification" content="S02ea1cGt2wRjrpRrcZlqIEUaoo_7a8Y30NmvXbL4XE" />
+        <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+        <script type="text/javascript">
+            window._taboola = window._taboola || [];
+            _taboola.push({ article: "auto" });
+            !(function (e, f, u, i) {
+                if (!document.getElementById(i)) {
+                    e.async = 1;
+                    e.src = u;
+                    e.id = i;
+                    f.parentNode.insertBefore(e, f);
+                }
+            })(document.createElement("script"), document.getElementsByTagName("script")[0], "//cdn.taboola.com/libtrc/ncsmusicasia/loader.js", "tb_loader_script");
+            if (window.performance && typeof window.performance.mark == "function") {
+                window.performance.mark("tbl_ic");
+            }
+        </script>
+        <script data-ad-client="ca-pub-7636415042281150" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74680515-9"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-  <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+          gtag('config', 'UA-74680515-9');
+        </script>
+    </head>
 
-          <div class="site-info">
-            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-            <p class="site-description">{{ site.description }}</p>
-          </div>
+    <body>
+        <div class="wrapper-masthead">
+            <div class="container">
+                <header class="masthead clearfix">
+                    <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
 
-          <!-- <nav>
+                    <div class="site-info">
+                        <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
+                        <p class="site-description">{{ site.description }}</p>
+                    </div>
+
+                    <!-- <nav>
             <a href="{{ site.baseurl }}/">Blog</a>
             <a href="{{ site.baseurl }}/about">About</a>
           </nav> -->
-        </header>
-      </div>
-    </div>
+                </header>
+            </div>
+        </div>
 
-    <div id="main" role="main" class="container">
-      {{ content }}
-    </div>
-<div id="taboola-below-article-thumbnails-1"></div>
-<script type="text/javascript">
-  window._taboola = window._taboola || [];
-  _taboola.push({
-    mode: 'thumbnails-a',
-    container: 'taboola-below-article-thumbnails-1',
-    placement: 'Below Article Thumbnails 1',
-    target_type: 'mix'
-  });
-</script>
+        <div id="main" role="main" class="container">
+            {{ content }}
+        </div>
+        <div id="taboola-below-article-thumbnails-1"></div>
+        <script type="text/javascript">
+            window._taboola = window._taboola || [];
+            _taboola.push({
+                mode: "thumbnails-a",
+                container: "taboola-below-article-thumbnails-1",
+                placement: "Below Article Thumbnails 1",
+                target_type: "mix",
+            });
+        </script>
 
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          {% include svg-icons.html %}
-        </footer>
-      </div>
-    </div>
+        <div class="wrapper-footer">
+            <div class="container">
+                <footer class="footer">
+                    {% include svg-icons.html %}
+                </footer>
+            </div>
+        </div>
 
-    {% include analytics.html %}
-    <script type="text/javascript">
-  window._taboola = window._taboola || [];
-  _taboola.push({flush: true});
-</script>
-  </body>
+        {% include analytics.html %}
+        <script type="text/javascript">
+            window._taboola = window._taboola || [];
+            _taboola.push({ flush: true });
+        </script>
+    </body>
 </html>
