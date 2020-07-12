@@ -4,78 +4,76 @@ title: Deep Learning in Cloud
 ---
 ## Ever had a laptop which is not powerful enough to run your models , forget about it and use Cloud GPUs, to train your model faster
 
-## 1.- Cloud GPUs
+## Cloud GPUs
 
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
+1	Google Colaboratory❤️	[https://colab.research.google.com](https://colab.research.google.com)	FREE	FREE FOREVER*
 
-To Start, You need download [Brave Browser](https://brave.com/?ref=jof901). Download now via link: [Download Now](https://brave.com/?ref=jof901)
+2	Kaggle Kernels	[https://www.kaggle.com](https://www.kaggle.com)	FREE	FREE FOREVER*
 
-After download brave browser, You need to install this program.
+3	Tensorpad	[https://www.tensorpad.com](https://www.tensorpad.com)	1080ti at $0.49/hour	5 free GPU hours
 
-## 2.- Sign up here.
+4	FloydHub	[https://www.floydhub.com](https://www.floydhub.com/pricing)	free 2 GPU powerups in 14 days trial plan
 
-After install Brave Browser, The next step you need to do is sign up for an account here: 
-[https://publishers.basicattentiontoken.org](https://publishers.basicattentiontoken.org/) .
-Use the account you just created and log into the site
+5	Onepanel	[https://www.onepanel.io](https://www.onepanel.io/pricing)	-
 
-## 3.- Setup Account
+6	Nimblebox	[https://nimblebox.ai](https://nimblebox.ai/plans)	free $5 worth of cloud credits
 
-After you have logged into your account, Click on + Add Channel and link your Website or your channel of YouTube or Twitch.
+7	paperspace	[https://www.paperspace.com](https://www.paperspace.com/pricing)	$10 credits
 
-They will receive that the website or linked channel is legitimate if it is they will give you the (Referral Link) in which each person that installs the browser under your link and when using it for at least 1 month will pay you 5 USD in BAT ( Only the first time per user).
+8	Overture	[https://www.overture.ai](https://www.overture.ai)	-	free credits on signup
 
-![Add Channel to Account]({{ site.baseurl }}/images/addchannel.png "Add Channel to Account")
+9	Dataiku	[https://www.dataiku.com](https://www.dataiku.com)	-	Free Plans
 
-## 4.- Setup Tipping Banner
+10	Cloudalize	[https://www.cloudalize.com](https://www.cloudalize.com/pricing/)	-
 
-Click on Tipping Banner, then on “Customize” and make sure to put in “Links” the link of your website or channel you linked (This will make you a Brave Verified Publisher) and allow you to receive donations from other users.
+11	Deepcognition	[https://deepcognition.ai](https://deepcognition.ai/products)	Desktop version free to use
 
-![Tipping Banner]({{ site.baseurl }}/images/tipbanner.png "Tipping Banner")
+12	GPUeater	[https://gpueater.com](https://gpueater.com/#pricing)	-
 
-- The payment is monthly keep in mind that you must link your account (Uphold, is where the payment is processed) in the same way you must have your account verified.
+13	Vast.ai	[https://vast.ai](https://vast.ai/console/create/)	-
+14	Clusterone	[https://clusterone.com](https://clusterone.com/pricing)	$25 Sign up credit
 
-![Uphold Account]({{ site.baseurl }}/images/uphold.png "Uphold Account")
+15	Snark	[https://snark.ai](https://scale.snark.ai/pricing)	-
+16	Crestle	[https://crestle.ai](https://crestle.ai/#pricing)	1 hour of free GPU usage on sign up fast.ai
 
-- Currently we can earn BAT through people who download the browser under our link and keep it for 1 month, usually the browser offers incentives to users which we can auto donate (I do not recommend it since they can put your account under review and ban it) the best thing is that you exchange these Tokens with another content creator and with the Brave Dev which pays you fractions of BAT to see advertising (Up to 5 ads per hour) I prefer to wait for that function to be added as such in the version principal.
+17	Vector Dash(gaming)	[https://vectordash.com](https://vectordash.com)	-	free 7 day plan
 
-- In addition, you can earn a lot of BAT by watching ads displayed randomly when you use
+18	Spell	[https://spell.run/developers](https://spell.run/pricing)	$10 GPU credit on signup
 
-![BAT Coin]({{ site.baseurl }}/images/bat.png "BAT Coin")
+19	Rapid Switch	[https://www.rapidswitch.com](https://www.rapidswitch.com)	pricing	-
 
-## Make money with BAT Tokens
+20	Salamander	[https://salamander.ai](https://salamander.ai)	-
 
-- After completing the above steps, you can use the Brave Browser normally similar to Chrome, Firefox ...
+21	Leadergpu	[https://www.leadergpu.com](https://www.leadergpu.com)	-
 
-- And at the beginning of each month, Brave will pay you BAT Tokens through the use of browsers and referral programs
+22	vscaler	[https://www.vscaler.com](https://www.vscaler.com)	on request	-
 
-- All BAT is paid to you via uphold wallet (remember your uphold account information)
+23	AWS Sagemaker	[https://aws.amazon.com/sagemaker/](https://aws.amazon.com/sagemaker/)	pricing	Free plans
 
-- Once the bat has been received in your wallet, you can easily transfer the BAT to other coins like ETH, BTC, XRP ... Or you can transfer them directly to exchanges like Binance to get can make more money.
+24	Exoscale	[https://www.exoscale.com/gpu/](https://www.exoscale.com/gpu/)	pricing	-
 
+25	Cirrascale	[http://www.cirrascale.com](http://www.cirrascale.com)	Work station	-
 
-## If you want to know more about Brave Browser see this article:
+26	Alibaba cloud	[https://alibabacloud.com](https://alibabacloud.com)	pay as you go	$300 credits
 
-[What is Brave Browser?](https://medium.com/@Censed/what-is-brave-browser-esbc-a3fc97e52944)
+27	IBM Cloud	[https://www.ibm.com/cloud/gpu](https://www.ibm.com/cloud/gpu)	pay as you go	$200 credits
 
-## If you want to know more about Basic Attention Token see this article:
+28	Google Cloud Platform	[https://cloud.google.com/gpu/](https://cloud.google.com/pricing/)	$300 credits
 
-[What is Basic Attention Token](https://medium.com/@Censed/what-is-basic-attention-token-esbc-274339e94300)
+29	Valohai	[https://valohai.com](https://valohai.com/pricing/)	free trial avaliable
 
-✓ It is an excellent way to start generating your first earnings in cryptocurrency (legitimately and helping to know more about this world).
+30	Nvidia cloud	[https://www.nvidia.com/en-us/data-center/gpu-cloud-computing/](https://www.nvidia.com/en-us/data-center/gpu-cloud-computing/)	-	-
 
-✓ Basic Attention Token (BAT) now has 100,000 publishers who accept the token as a form of payment and tips for their services. BAT is the native token of the Brave browser and users who use the browser can now earn tokens by viewing advertisements.
+31	One stop System	[https://www.onestopsystems.com](https://www.onestopsystems.com)	-	-
 
-## Brave
+32	Azure	[https://azure.microsoft.com/en-in/services/machine-learning-studio/](https://azure.microsoft.com/en-in/services/machine-learning-studio/)	pricing	$200 credits
 
-[Support me with Brave](https://brave.com/?ref=jof901)
+33	Omnisci	[https://www.omnisci.com](https://www.omnisci.com/cloud)	14 day free trial
 
-## Website of ESBC
+34	Rendsolve	[https://rendsolve.com](https://rendsolve.com/pricing)	-
 
-[Leading cryptocurrency betting platform](https://esbc.pro/)
+35	Golem	[https://golem.network](https://golem.network)	-	-
 
-## Github
+36	Deepnote	[https://www.deepnote.com/](https://www.deepnote.com/)	Currently in Beta	-
 
-[ESBC Core (new wallet for new chain)](https://github.com/BlockchainFor/ESBC2/releases)
+37	Genesis Cloud	[https://www.genesiscloud.com/](https://www.genesiscloud.com/)	1080Ti at $0.30/hour	166 free GPU hours
