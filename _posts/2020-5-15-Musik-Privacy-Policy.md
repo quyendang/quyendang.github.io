@@ -68,8 +68,11 @@ We do not own any of the content in this app. All content in the app is non-copy
 - v.v.v
 
 It does not download and not play videos in the background to meet YouTube Terms of Services which don't allow separation of audio and video streams.
+
 It is not an offline: does not cache videos or support offline playback.
+
 You can also use following link to check more details about YouTube: [https://www.youtube.com/t/terms](https://www.youtube.com/t/terms)
+
 By downloading the app you agree to these terms. If you find any copyright content, please contact us via the email address, We will remove it.
 
 
