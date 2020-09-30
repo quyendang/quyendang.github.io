@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 1ms
+title: Musik
 ---
 
 ## Privacy Policy
@@ -54,8 +54,27 @@ This Service may contain links to other sites. If you click on a third-party lin
 
 These Services do not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13. In the case I discover that a child under 13 has provided me with personal information, I immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact me so that I will be able to do necessary actions.
 
+## Copyright info
+
+We do not own any of the content in this app. All content in the app is non-copyright content. We are authorized to use this content and comply with the policy of the third party providing this content. As follows:
+
+- [NoCopyrightSounds](https://www.youtube.com/c/NoCopyrightSounds/about) : [NoCopyrightSounds Usage Policy](http://ncs.io/UsagePolicy)
+- [Vlog No Copyright Music](https://www.youtube.com/c/VlogNoCopyrightMusic/about) : [Vlog No Copyright Music Usage Policy](https://www.youtube.com/c/VlogNoCopyrightMusic/about)
+- [Lost Sky](https://www.youtube.com/c/LostSky/about) : [Lost Sky Usage Policy](https://www.youtube.com/c/LostSky/about)
+- [Elektronomia](https://www.youtube.com/c/Elektronomia/about) : [Elektronomia Usage Policy](https://www.youtube.com/c/Elektronomia/about)
+- [Future House Music ](https://www.youtube.com/c/FutureHouseMusic/about) : [Future House Music Usage Policy](https://www.youtube.com/c/FutureHouseMusic/about)
+- [UKF Dubstep](https://www.youtube.com/c/ukfdubstep/about) : [UKF Dubstep Usage Policy](https://www.youtube.com/c/ukfdubstep/about)
+- [Alan Walker](https://www.youtube.com/c/Alanwalkermusic/about) : [Alan Walker Usage Policy](https://www.youtube.com/c/Alanwalkermusic/about)
+- v.v.v
+
+It does not download and not play videos in the background to meet YouTube Terms of Services which don't allow separation of audio and video streams.
+It is not an offline: does not cache videos or support offline playback.
+You can also use following link to check more details about YouTube: [https://www.youtube.com/t/terms](https://www.youtube.com/t/terms)
+By downloading the app you agree to these terms. If you find any copyright content, please contact us via the email address, We will remove it.
+
+
 ## Changes to This Privacy Policy
 
 I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy on this page.
 
-This policy is effective as of 2020-05-15
+This policy is effective as of 2020-10-01
