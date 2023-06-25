@@ -5,14 +5,6 @@
       databaseURL: "https://musik-9b557-default-rtdb.asia-southeast1.firebasedatabase.app",
       projectId: "musik-9b557",
     }; -->
-
-<!-- var firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      databaseURL: "YOUR_DATABASE_URL",
-      projectId: "YOUR_PROJECT_ID",
-    }; -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +32,8 @@
     <table class="table">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>#</th>
+          <th>@</th>
           <th>IP</th>
           <th>Last Update</th>
           <th>IP Count</th>
@@ -78,7 +71,7 @@
     var dbRef = firebase.database().ref('devices');
     dbRef.on('value', function(snapshot) {
       var deviceList = snapshot.val();
-
+      var count = 1;
       var deviceListHTML = '';
       for (var deviceId in deviceList) {
         if (deviceList.hasOwnProperty(deviceId)) {
@@ -96,6 +89,7 @@
           }
 
           deviceListHTML += '>';
+          deviceListHTML += '<td>' + count + '</td>'; // Thêm số thứ tự
           deviceListHTML += '<td><span class="flag-icon flag-icon-' + device.country.toLowerCase() + '"></span></td>';
           deviceListHTML += '<td>' + device.ip + '</td>';
           var lastUpdateTime = moment(device.lastUpdateTime).format('hh:mm:ss A');
@@ -109,6 +103,7 @@
           deviceListHTML += '<td>' + device.pub + '</td>';
           deviceListHTML += '<td><button class="btn btn-danger btn-sm" onclick="deleteDevice(\'' + deviceId + '\')">Delete</button></td>';
           deviceListHTML += '</tr>';
+          count++; // Tăng giá trị biến đếm
         }
       }
 
