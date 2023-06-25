@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Danh sách thiết bị</title>
+  <!-- Nhúng tệp CSS của Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    .device-card {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Danh sách thiết bị</h1>
+    <div id="deviceList"></div>
+  </div>
+
+  <!-- Nhúng tệp JavaScript của Bootstrap và Firebase -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
+
+  <script>
+    // Cấu hình thông tin kết nối Firebase của bạn
+    var firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      databaseURL: "YOUR_DATABASE_URL",
+      projectId: "YOUR_PROJECT_ID",
+    };
+    // Khởi tạo Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Lấy danh sách thiết bị từ Firebase và hiển thị
+    var dbRef = firebase.database().ref('devices');
+    dbRef.on('value', function(snapshot) {
+      var deviceList = snapshot.val();
+
+      var deviceListHTML = '';
+      for (var deviceId in deviceList) {
+        if (deviceList.hasOwnProperty(deviceId)) {
+          var device = deviceList[deviceId];
+          deviceListHTML += '<div class="card device-card">';
+          deviceListHTML += '<div class="card-body">';
+          deviceListHTML += '<h5 class="card-title">Thiết bị ' + deviceId + '</h5>';
+          deviceListHTML += '<p class="card-text">Quốc gia: ' + device.country + '</p>';
+          deviceListHTML += '<p class="card-text">IP: ' + device.ip + '</p>';
+          deviceListHTML += '<p class="card-text">Lần cập nhật cuối: ' + new Date(device.lastUpdateTime) + '</p>';
+          deviceListHTML += '<p class="card-text">Số lần nhấp banner: ' + device.numOfBannerClick + '</p>';
+          deviceListHTML += '<p class="card-text">Số lỗi: ' + device.numOfError + '</p>';
+          deviceListHTML += '<p class="card-text">Số lần hiển thị: ' + device.numOfImpression + '</p>';
+          deviceListHTML += '<p class="card-text">Số lần nhấp quảng cáo: ' + device.numOfInterClick + '</p>';
+          deviceListHTML += '<p class="card-text">Số IP: ' + device.numOfIp + '</p>';
+          deviceListHTML += '<p class="card-text">Nhà xuất bản: ' + device.pub + '</p>';
+          deviceListHTML += '</div>';
+          deviceListHTML += '</div>';
+        }
+      }
+
+      document.getElementById('deviceList').innerHTML = deviceListHTML;
+    });
+  </script>
+</body>
+</html>
