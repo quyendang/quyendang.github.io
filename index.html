@@ -6,13 +6,6 @@
       projectId: "musik-9b557",
     }; -->
 
-<!-- var firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      databaseURL: "YOUR_DATABASE_URL",
-      projectId: "YOUR_PROJECT_ID",
-    }; -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,6 +85,8 @@
           var diffMinutes = currentTime.diff(lastUpdateTime, 'minutes');
           if (diffMinutes > 10) {
             deviceListHTML += ' class="table-danger"';
+          } else if (diffMinutes >= 2 && diffMinutes <= 10) {
+            deviceListHTML += ' class="table-warning"';
           } else {
             deviceListHTML += ' class="table-success"';
           }
