@@ -6,6 +6,13 @@
       projectId: "musik-9b557",
     }; -->
 
+<!-- var firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      databaseURL: "YOUR_DATABASE_URL",
+      projectId: "YOUR_PROJECT_ID",
+    }; -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +27,9 @@
       width: 25px;
       height: 25px;
       margin-right: 5px;
+    }
+    .progress-bar-gradient {
+      background: linear-gradient(to right, #36d1dc, #5b86e5);
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -60,7 +70,7 @@
       authDomain: "nscmusic.asia",
       databaseURL: "https://musik-9b557-default-rtdb.asia-southeast1.firebasedatabase.app",
       projectId: "musik-9b557",
-    };
+    }; 
     // Khởi tạo Firebase
     firebase.initializeApp(firebaseConfig);
 
@@ -92,10 +102,10 @@
           deviceListHTML += '<td>' + lastUpdateTime + '</td>';
           deviceListHTML += '<td>' + device.numOfIp + '</td>';
           deviceListHTML += '<td>' + device.numOfImpression + '</td>';
-          deviceListHTML += '<td>' + device.numOfBannerClick + '-'+ device.numOfInterClick + '</td>';
+          deviceListHTML += '<td>' + device.numOfBannerClick + '-' + device.numOfInterClick + '</td>';
           deviceListHTML += '<td>' + device.numOfError + '</td>';
           deviceListHTML += '<td>' + device.crash + '</td>';
-          deviceListHTML += '<td>' + formatBytes(device.ram) + '</td>';
+          deviceListHTML += '<td><div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + calculateRamUsage(device.ram) + '%"></div></div>' + formatBytes(device.ram) + '</td>';
           deviceListHTML += '<td>' + device.pub + '</td>';
           deviceListHTML += '<td><button class="btn btn-danger btn-sm" onclick="deleteDevice(\'' + deviceId + '\')">Delete</button></td>';
           deviceListHTML += '</tr>';
@@ -104,8 +114,9 @@
 
       document.getElementById('deviceList').innerHTML = deviceListHTML;
     });
+
     function deleteDevice(deviceId) {
-      if (confirm("Are you sure you want to delete this devices?")) {
+      if (confirm("Are you sure you want to delete this device?")) {
         var deviceRef = firebase.database().ref('devices/' + deviceId);
         deviceRef.remove()
           .then(function() {
@@ -116,18 +127,25 @@
           });
       }
     }
+
     function formatBytes(bytes, decimals = 2) {
-        if (!+bytes) return '0 Bytes'
+      if (!+bytes) return '0 Bytes';
 
-        const k = 1024
-        const dm = decimals < 0 ? 0 : decimals
-        const sizes = ['Bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']
+      const k = 1024;
+      const dm = decimals < 0 ? 0 : decimals;
+      const sizes = ['Bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
 
-        const i = Math.floor(Math.log(bytes) / Math.log(k))
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-        return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
+      return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+    }
+
+    function calculateRamUsage(ram) {
+      const totalRam = 8 * 1024 * 1024 * 1024; // 8GB RAM in bytes
+      const usagePercentage = (ram / totalRam) * 100;
+
+      return usagePercentage.toFixed(2);
     }
   </script>
 </body>
 </html>
-
