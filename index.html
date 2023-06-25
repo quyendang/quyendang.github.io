@@ -6,6 +6,12 @@
       projectId: "musik-9b557",
     }; -->
 
+<!-- var firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      databaseURL: "YOUR_DATABASE_URL",
+      projectId: "YOUR_PROJECT_ID",
+    }; -->
 
 <!DOCTYPE html>
 <html>
@@ -92,7 +98,7 @@
 
           deviceListHTML += '>';
           deviceListHTML += '<td>' + count + '</td>'; // Thêm số thứ tự
-          deviceListHTML += '<td><span class="flag-icon flag-icon-' + device.country.toLowerCase() + '"></span></td>';
+          deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country ? device.country.toLowerCase() : '') + '"></span></td>';
           deviceListHTML += '<td>' + device.ip + '</td>';
           var lastUpdateTime = moment(device.lastUpdateTime).format('hh:mm:ss A');
           deviceListHTML += '<td>' + lastUpdateTime + '</td>';
