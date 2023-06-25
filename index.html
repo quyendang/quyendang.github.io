@@ -35,8 +35,7 @@
           <th>Last Update</th>
           <th>IP Count</th>
           <th>Impression</th>
-          <th>Banner Click</th>
-          <th>Interstitial Click</th>
+          <th>Click</th>
           <th>Error Count</th>
           <th>Crash</th>
           <th>RAM</th>
@@ -93,8 +92,7 @@
           deviceListHTML += '<td>' + lastUpdateTime + '</td>';
           deviceListHTML += '<td>' + device.numOfIp + '</td>';
           deviceListHTML += '<td>' + device.numOfImpression + '</td>';
-          deviceListHTML += '<td>' + device.numOfBannerClick + '</td>';
-          deviceListHTML += '<td>' + device.numOfInterClick + '</td>';
+          deviceListHTML += '<td>' + device.numOfBannerClick + device.numOfInterClick + '</td>';
           deviceListHTML += '<td>' + device.numOfError + '</td>';
           deviceListHTML += '<td>' + device.crash + '</td>';
           deviceListHTML += '<td>' + formatBytes(device.ram) + '</td>';
