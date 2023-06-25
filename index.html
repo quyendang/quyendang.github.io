@@ -1,0 +1,135 @@
+
+<!-- var firebaseConfig = {
+      apiKey: "AIzaSyCVE4U4wQvglPuKRi06ezTzwf3xagx8uUs",
+      authDomain: "nscmusic.asia",
+      databaseURL: "https://musik-9b557-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "musik-9b557",
+    }; -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Danh sách thiết bị</title>
+  <!-- Nhúng tệp CSS của Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Nhúng tệp CSS của flag-icon-css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css">
+
+  <style>
+    .flag-icon {
+      width: 25px;
+      height: 25px;
+      margin-right: 5px;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>DeviceList</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>IP</th>
+          <th>Last Update</th>
+          <th>IP Count</th>
+          <th>Impression</th>
+          <th>Banner Click</th>
+          <th>Interstitial Click</th>
+          <th>Error Count</th>
+          <th>Crash</th>
+          <th>RAM</th>
+          <th>Publisher</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="deviceList"></tbody>
+    </table>
+  </div>
+
+  <!-- Nhúng tệp JavaScript của Bootstrap và Firebase -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
+
+  <script>
+    // Cấu hình thông tin kết nối Firebase của bạn
+    var firebaseConfig = {
+      apiKey: "AIzaSyCVE4U4wQvglPuKRi06ezTzwf3xagx8uUs",
+      authDomain: "nscmusic.asia",
+      databaseURL: "https://musik-9b557-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "musik-9b557",
+    };
+    // Khởi tạo Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Lấy danh sách thiết bị từ Firebase và hiển thị
+    var dbRef = firebase.database().ref('devices');
+    dbRef.on('value', function(snapshot) {
+      var deviceList = snapshot.val();
+
+      var deviceListHTML = '';
+      for (var deviceId in deviceList) {
+        if (deviceList.hasOwnProperty(deviceId)) {
+          var device = deviceList[deviceId];
+          deviceListHTML += '<tr';
+
+          // Kiểm tra và thêm lớp CSS nếu lastUpdateTime cách thời gian hiện tại 10 phút
+          var currentTime = moment();
+          var lastUpdateTime = moment(device.lastUpdateTime);
+          var diffMinutes = currentTime.diff(lastUpdateTime, 'minutes');
+          if (diffMinutes > 10) {
+            deviceListHTML += ' class="table-danger"';
+          } else {
+            deviceListHTML += ' class="table-success"';
+          }
+
+          deviceListHTML += '>';
+          deviceListHTML += '<td><span class="flag-icon flag-icon-' + device.country.toLowerCase() + '"></span></td>';
+          deviceListHTML += '<td>' + device.ip + '</td>';
+          var lastUpdateTime = moment(device.lastUpdateTime).format('hh:mm:ss A');
+          deviceListHTML += '<td>' + lastUpdateTime + '</td>';
+          deviceListHTML += '<td>' + device.numOfIp + '</td>';
+          deviceListHTML += '<td>' + device.numOfImpression + '</td>';
+          deviceListHTML += '<td>' + device.numOfBannerClick + '</td>';
+          deviceListHTML += '<td>' + device.numOfInterClick + '</td>';
+          deviceListHTML += '<td>' + device.numOfError + '</td>';
+          deviceListHTML += '<td>' + device.crash + '</td>';
+          deviceListHTML += '<td>' + formatBytes(device.ram) + '</td>';
+          deviceListHTML += '<td>' + device.pub + '</td>';
+          deviceListHTML += '<td><button class="btn btn-danger btn-sm" onclick="deleteDevice(\'' + deviceId + '\')">Delete</button></td>';
+          deviceListHTML += '</tr>';
+        }
+      }
+
+      document.getElementById('deviceList').innerHTML = deviceListHTML;
+    });
+    function deleteDevice(deviceId) {
+      if (confirm("Bạn có chắc chắn muốn xóa thiết bị này?")) {
+        var deviceRef = firebase.database().ref('devices/' + deviceId);
+        deviceRef.remove()
+          .then(function() {
+            alert("Thiết bị đã được xóa thành công!");
+          })
+          .catch(function(error) {
+            console.error("Xóa thiết bị không thành công: ", error);
+          });
+      }
+    }
+    function formatBytes(bytes, decimals = 2) {
+        if (!+bytes) return '0 Bytes'
+
+        const k = 1024
+        const dm = decimals < 0 ? 0 : decimals
+        const sizes = ['Bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']
+
+        const i = Math.floor(Math.log(bytes) / Math.log(k))
+
+        return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
+    }
+  </script>
+</body>
+</html>
+
