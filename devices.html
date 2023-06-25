@@ -24,6 +24,9 @@
     .progress-bar-gradient {
       background: linear-gradient(to right, #36d1dc, #5b86e5);
     }
+    .bold-row {
+      font-weight: bold;
+    }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </head>
@@ -111,6 +114,13 @@
       }
 
       document.getElementById('deviceList').innerHTML = deviceListHTML;
+      var rows = document.querySelectorAll('#deviceList tr');
+        rows.forEach(function(row) {
+          row.classList.add('bold-row');
+          setTimeout(function() {
+            row.classList.remove('bold-row');
+          }, 2000);
+        });
     });
 
     function deleteDevice(deviceId) {
