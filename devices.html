@@ -114,13 +114,6 @@
       }
 
       document.getElementById('deviceList').innerHTML = deviceListHTML;
-      var rows = document.querySelectorAll('#deviceList tr');
-        rows.forEach(function(row) {
-          row.classList.add('bold-row');
-          setTimeout(function() {
-            row.classList.remove('bold-row');
-          }, 2000);
-        });
     });
 
     function deleteDevice(deviceId) {
