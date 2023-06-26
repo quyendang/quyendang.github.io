@@ -84,19 +84,30 @@
 
           // Kiểm tra và thêm lớp CSS nếu lastUpdateTime cách thời gian hiện tại 10 phút
           var currentTime = moment();
-            var lastUpdateTime = moment(device.lastUpdateTime);
-            var timeAgo = moment.duration(currentTime.diff(lastUpdateTime));
-            
-            var timeAgoString = '';
-            if (timeAgo.asSeconds() < 60) {
-              timeAgoString = Math.round(timeAgo.asSeconds()) + 's ago';
-            } else if (timeAgo.asMinutes() < 60) {
-              timeAgoString = Math.round(timeAgo.asMinutes()) + ' minutes ago';
-            } else if (timeAgo.asHours() < 24) {
-              timeAgoString = Math.round(timeAgo.asHours()) + ' hours ago';
-            } else {
-              timeAgoString = Math.round(timeAgo.asDays()) + ' days ago';
-            }
+          var lastUpdateTime = moment(device.lastUpdateTime);
+          var diffMinutes = currentTime.diff(lastUpdateTime, 'minutes');
+          if (diffMinutes > 10) {
+            deviceListHTML += ' class="table-danger"';
+          } else if (diffMinutes >= 5 && diffMinutes <= 10) {
+            deviceListHTML += ' class="table-warning"';
+          } else {
+            deviceListHTML += ' class="table-success"';
+          }
+
+          var currentTime = moment();
+          var lastUpdateTime = moment(device.lastUpdateTime);
+          var timeAgo = moment.duration(currentTime.diff(lastUpdateTime));
+
+          var timeAgoString = '';
+          if (timeAgo.asSeconds() < 60) {
+            timeAgoString = Math.round(timeAgo.asSeconds()) + 's ago';
+          } else if (timeAgo.asMinutes() < 60) {
+            timeAgoString = Math.round(timeAgo.asMinutes()) + ' minutes ago';
+          } else if (timeAgo.asHours() < 24) {
+            timeAgoString = Math.round(timeAgo.asHours()) + ' hours ago';
+          } else {
+            timeAgoString = Math.round(timeAgo.asDays()) + ' days ago';
+          }
 
           deviceListHTML += '>';
           deviceListHTML += '<td>' + count + '</td>'; // Thêm số thứ tự
