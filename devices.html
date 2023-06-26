@@ -88,7 +88,7 @@
           var diffMinutes = currentTime.diff(lastUpdateTime, 'minutes');
           if (diffMinutes > 10) {
             deviceListHTML += ' class="table-danger"';
-          } else if (diffMinutes >= 5 && diffMinutes <= 10) {
+          } else if (diffMinutes >= 3 && diffMinutes <= 10) {
             deviceListHTML += ' class="table-warning"';
           } else {
             deviceListHTML += ' class="table-success"';
