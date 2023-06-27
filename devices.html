@@ -118,7 +118,7 @@
           deviceListHTML += '<td>' + device.numOfIp.toLocaleString() + '</td>';
           deviceListHTML += '<td>' + device.numOfImpression.toLocaleString() + '</td>';
           deviceListHTML += '<td>' + device.numOfBannerClick + '-' + device.numOfInterClick + '</td>';
-          deviceListHTML += '<td>' + device.numOfNoAds.toLocaleString() + '</td>';
+          deviceListHTML += '<td>' + (device.numOfNoAds ? device.numOfNoAds.toLocaleString() : 0 + '</td>';
           deviceListHTML += '<td>' + device.crash + '</td>';
           deviceListHTML += '<td><div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + calculateRamUsage(device.ram) + '%"></div></div>' + formatBytes(device.ram) + '</td>';
           deviceListHTML += '<td>' + device.pub + '</td>';
