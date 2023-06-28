@@ -47,6 +47,7 @@
           <th>Crash</th>
           <th>RAM</th>
           <th>Publisher</th>
+          <th>Sdk</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -129,6 +130,7 @@
           deviceListHTML += '<td>' + device.crash + '</td>';
           deviceListHTML += '<td><div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + calculateRamUsage(device.ram) + '%"></div></div>' + formatBytes(device.ram) + '</td>';
           deviceListHTML += '<td>' + device.pub + '</td>';
+          deviceListHTML += '<td>' + device.jsv + '</td>';
           deviceListHTML += '<td><button class="btn btn-danger btn-sm" onclick="deleteDevice(\'' + deviceId + '\')">Delete</button></td>';
           deviceListHTML += '</tr>';
           count++; // Tăng giá trị biến đếm
