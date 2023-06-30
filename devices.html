@@ -89,17 +89,15 @@
           var diffMinutes = currentTime.diff(lastUpdateTime, 'minutes');
           
 
-          if (device.numOfNoAds > 100) {
-            deviceListHTML += ' class="table-primary"';
-          } else {
-            if (diffMinutes > 10) {
+          if (diffMinutes > 10) {
               deviceListHTML += ' class="table-danger"';
+            } else if (device.numOfNoAds > 2000){
+              deviceListHTML += ' class="table-primary"';
             } else if (diffMinutes >= 3 && diffMinutes <= 10) {
               deviceListHTML += ' class="table-warning"';
             } else {
               deviceListHTML += ' class="table-success"';
             }
-          }
 
 
           var currentTime = moment();
