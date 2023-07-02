@@ -1,4 +1,3 @@
-
 <!-- var firebaseConfig = {
       apiKey: "AIzaSyCVE4U4wQvglPuKRi06ezTzwf3xagx8uUs",
       authDomain: "nscmusic.asia",
@@ -8,167 +7,190 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Devices</title>
-  <!-- Nhúng tệp CSS của Bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <!-- Nhúng tệp CSS của flag-icon-css -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css">
+    <head>
+        <title>Devices</title>
+        <!-- Nhúng tệp CSS của Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <!-- Nhúng tệp CSS của flag-icon-css -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css" />
 
-  <style>
-    .flag-icon {
-      width: 25px;
-      height: 25px;
-      margin-right: 5px;
-    }
-    .progress-bar-gradient {
-      background: linear-gradient(to right, #36d1dc, #5b86e5);
-    }
-    .bold-row {
-      font-weight: bold;
-    }
-  </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-</head>
-<body>
-  <div class="container">
-    <h1>Device List</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>@</th>
-          <th>IP</th>
-          <th>Last Update</th>
-          <th>IP Count</th>
-          <th>Impression</th>
-          <th>Click</th>
-          <th>No Ads</th>
-          <th>Crash</th>
-          <th>RAM</th>
-          <th>Publisher</th>
-          <th>Sdk</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody id="deviceList"></tbody>
-    </table>
-  </div>
+        <style>
+            .flag-icon {
+                width: 25px;
+                height: 25px;
+                margin-right: 5px;
+            }
+            .progress-bar-gradient {
+                background: linear-gradient(to right, #36d1dc, #5b86e5);
+            }
+            .bold-row {
+                font-weight: bold;
+            }
+            .red-circle {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: red;
+            }
+            .green-circle {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: green;
+            }
+            .yellow-circle {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: yellow;
+            }
+            .pink-circle {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: pink;
+            }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Device List</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>@</th>
+                        <th>IP</th>
+                        <th>Last Update</th>
+                        <th>IP Count</th>
+                        <th>Impression</th>
+                        <th>Click</th>
+                        <th>No Ads</th>
+                        <th>Crash</th>
+                        <th>RAM</th>
+                        <th>Publisher</th>
+                        <th>Sdk</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="deviceList"></tbody>
+            </table>
+        </div>
 
-  <!-- Nhúng tệp JavaScript của Bootstrap và Firebase -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
+        <!-- Nhúng tệp JavaScript của Bootstrap và Firebase -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
 
-  <script>
-    // Cấu hình thông tin kết nối Firebase của bạn
-    var firebaseConfig = {
-      apiKey: "AIzaSyCVE4U4wQvglPuKRi06ezTzwf3xagx8uUs",
-      authDomain: "nscmusic.asia",
-      databaseURL: "https://musik-9b557-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "musik-9b557",
-    }; 
-    // Khởi tạo Firebase
-    firebase.initializeApp(firebaseConfig);
+        <script>
+            // Cấu hình thông tin kết nối Firebase của bạn
+            var firebaseConfig = {
+                apiKey: "AIzaSyCVE4U4wQvglPuKRi06ezTzwf3xagx8uUs",
+                authDomain: "nscmusic.asia",
+                databaseURL: "https://musik-9b557-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "musik-9b557",
+            };
+            // Khởi tạo Firebase
+            firebase.initializeApp(firebaseConfig);
 
-    // Lấy danh sách thiết bị từ Firebase và hiển thị
-    var dbRef = firebase.database().ref('devices');
-    dbRef.on('value', function(snapshot) {
-      var deviceList = snapshot.val();
-      var count = 1;
-      var deviceListHTML = '';
-      for (var deviceId in deviceList) {
-        if (deviceList.hasOwnProperty(deviceId)) {
-          var device = deviceList[deviceId];
-          deviceListHTML += '<tr';
+            // Lấy danh sách thiết bị từ Firebase và hiển thị
+            var dbRef = firebase.database().ref("devices");
+            dbRef.on("value", function (snapshot) {
+                var deviceList = snapshot.val();
+                var count = 1;
+                var deviceListHTML = "";
+                for (var deviceId in deviceList) {
+                    if (deviceList.hasOwnProperty(deviceId)) {
+                        var device = deviceList[deviceId];
+                        deviceListHTML += "<tr";
 
-          // Kiểm tra và thêm lớp CSS nếu lastUpdateTime cách thời gian hiện tại 10 phút
-          var currentTime = moment();
-          var lastUpdateTime = moment(device.lastUpdateTime);
-          var diffMinutes = currentTime.diff(lastUpdateTime, 'minutes');
-          
+                        // Kiểm tra và thêm lớp CSS nếu lastUpdateTime cách thời gian hiện tại 10 phút
+                        var currentTime = moment();
+                        var lastUpdateTime = moment(device.lastUpdateTime);
+                        var diffMinutes = currentTime.diff(lastUpdateTime, "minutes");
 
-          if (diffMinutes > 10) {
-              deviceListHTML += ' class="table-danger"';
-            } else if (device.numOfNoAds > 2000){
-              deviceListHTML += ' class="table-primary"';
-            } else if (diffMinutes >= 3 && diffMinutes <= 10) {
-              deviceListHTML += ' class="table-warning"';
-            } else {
-              deviceListHTML += ' class="table-success"';
+                        var currentTime = moment();
+                        var lastUpdateTime = moment(device.lastUpdateTime);
+                        var timeAgo = moment.duration(currentTime.diff(lastUpdateTime));
+
+                        var timeAgoString = "";
+                        if (timeAgo.asSeconds() < 60) {
+                            timeAgoString = Math.round(timeAgo.asSeconds()) + "s ago";
+                        } else if (timeAgo.asMinutes() < 60) {
+                            timeAgoString = Math.round(timeAgo.asMinutes()) + " minutes ago";
+                        } else if (timeAgo.asHours() < 24) {
+                            timeAgoString = Math.round(timeAgo.asHours()) + " hours ago";
+                        } else {
+                            timeAgoString = Math.round(timeAgo.asDays()) + " days ago";
+                        }
+
+                        deviceListHTML += ">";
+                        deviceListHTML += '<td><div'; // Thêm số thứ tự
+						if (diffMinutes > 10) {
+                            deviceListHTML += ' class="red-circle"';
+                        } else if (device.numOfNoAds > 2000) {
+                            deviceListHTML += ' class="pink-circle"';
+                        } else if (diffMinutes >= 3 && diffMinutes <= 10) {
+                            deviceListHTML += ' class="yellow-circle"';
+                        } else {
+                            deviceListHTML += ' class="green-circle"';
+                        }
+						deviceListHTML += '></div></td>';
+                        deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country ? device.country.toLowerCase() : "") + '"></span></td>';
+                        deviceListHTML += "<td>" + device.ip + "</td>";
+                        // var lastUpdateTime = moment(device.lastUpdateTime).format('hh:mm:ss A');
+                        deviceListHTML += "<td>" + timeAgoString + "</td>";
+                        deviceListHTML += "<td>" + device.numOfIp.toLocaleString() + "</td>";
+                        deviceListHTML += "<td>" + device.numOfImpression.toLocaleString() + "</td>";
+                        deviceListHTML += "<td>" + device.numOfBannerClick + "-" + device.numOfInterClick + "</td>";
+                        deviceListHTML += "<td>" + (device.numOfNoAds ? device.numOfNoAds.toLocaleString() : 0) + "</td>";
+                        deviceListHTML += "<td>" + device.crash + "</td>";
+                        deviceListHTML += '<td><div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + calculateRamUsage(device.ram) + '%"></div></div>' + formatBytes(device.ram) + "</td>";
+                        deviceListHTML += "<td>" + device.pub + "</td>";
+                        deviceListHTML += "<td>" + device.jsv + "</td>";
+                        deviceListHTML += '<td><button class="btn btn-danger btn-sm" onclick="deleteDevice(\'' + deviceId + "')\">Delete</button></td>";
+                        deviceListHTML += "</tr>";
+                        count++; // Tăng giá trị biến đếm
+                    }
+                }
+
+                document.getElementById("deviceList").innerHTML = deviceListHTML;
+            });
+
+            function deleteDevice(deviceId) {
+                if (confirm("Are you sure you want to delete this device?")) {
+                    var deviceRef = firebase.database().ref("devices/" + deviceId);
+                    deviceRef
+                        .remove()
+                        .then(function () {
+                            alert("The device has been successfully deleted!");
+                        })
+                        .catch(function (error) {
+                            console.error("Device delete unsuccessful: ", error);
+                        });
+                }
             }
 
+            function formatBytes(bytes, decimals = 2) {
+                if (!+bytes) return "0 Bytes";
 
-          var currentTime = moment();
-          var lastUpdateTime = moment(device.lastUpdateTime);
-          var timeAgo = moment.duration(currentTime.diff(lastUpdateTime));
+                const k = 1024;
+                const dm = decimals < 0 ? 0 : decimals;
+                const sizes = ["Bytes", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"];
 
-          var timeAgoString = '';
-          if (timeAgo.asSeconds() < 60) {
-            timeAgoString = Math.round(timeAgo.asSeconds()) + 's ago';
-          } else if (timeAgo.asMinutes() < 60) {
-            timeAgoString = Math.round(timeAgo.asMinutes()) + ' minutes ago';
-          } else if (timeAgo.asHours() < 24) {
-            timeAgoString = Math.round(timeAgo.asHours()) + ' hours ago';
-          } else {
-            timeAgoString = Math.round(timeAgo.asDays()) + ' days ago';
-          }
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-          deviceListHTML += '>';
-          deviceListHTML += '<td>' + count + '</td>'; // Thêm số thứ tự
-          deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country ? device.country.toLowerCase() : '') + '"></span></td>';
-          deviceListHTML += '<td>' + device.ip + '</td>';
-          // var lastUpdateTime = moment(device.lastUpdateTime).format('hh:mm:ss A');
-          deviceListHTML += '<td>' + timeAgoString + '</td>';
-          deviceListHTML += '<td>' + device.numOfIp.toLocaleString() + '</td>';
-          deviceListHTML += '<td>' + device.numOfImpression.toLocaleString() + '</td>';
-          deviceListHTML += '<td>' + device.numOfBannerClick + '-' + device.numOfInterClick + '</td>';
-          deviceListHTML += '<td>' + (device.numOfNoAds ? device.numOfNoAds.toLocaleString() : 0) + '</td>';
-          deviceListHTML += '<td>' + device.crash + '</td>';
-          deviceListHTML += '<td><div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + calculateRamUsage(device.ram) + '%"></div></div>' + formatBytes(device.ram) + '</td>';
-          deviceListHTML += '<td>' + device.pub + '</td>';
-          deviceListHTML += '<td>' + device.jsv + '</td>';
-          deviceListHTML += '<td><button class="btn btn-danger btn-sm" onclick="deleteDevice(\'' + deviceId + '\')">Delete</button></td>';
-          deviceListHTML += '</tr>';
-          count++; // Tăng giá trị biến đếm
-        }
-      }
+                return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+            }
 
-      document.getElementById('deviceList').innerHTML = deviceListHTML;
-    });
+            function calculateRamUsage(ram) {
+                const totalRam = 8 * 1024 * 1024 * 1024; // 8GB RAM in bytes
+                const usagePercentage = (ram / totalRam) * 100;
 
-    function deleteDevice(deviceId) {
-      if (confirm("Are you sure you want to delete this device?")) {
-        var deviceRef = firebase.database().ref('devices/' + deviceId);
-        deviceRef.remove()
-          .then(function() {
-            alert("The device has been successfully deleted!");
-          })
-          .catch(function(error) {
-            console.error("Device delete unsuccessful: ", error);
-          });
-      }
-    }
-
-    function formatBytes(bytes, decimals = 2) {
-      if (!+bytes) return '0 Bytes';
-
-      const k = 1024;
-      const dm = decimals < 0 ? 0 : decimals;
-      const sizes = ['Bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
-
-      const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-      return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
-    }
-
-    function calculateRamUsage(ram) {
-      const totalRam = 8 * 1024 * 1024 * 1024; // 8GB RAM in bytes
-      const usagePercentage = (ram / totalRam) * 100;
-
-      return usagePercentage.toFixed(2);
-    }
-  </script>
-</body>
+                return usagePercentage.toFixed(2);
+            }
+        </script>
+    </body>
 </html>
