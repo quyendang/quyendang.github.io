@@ -165,7 +165,7 @@
                     deviceRef
                         .remove()
                         .then(function () {
-                            alert("The device has been successfully deleted!");
+                            console.log("The device has been successfully deleted!");
                         })
                         .catch(function (error) {
                             console.error("Device delete unsuccessful: ", error);
