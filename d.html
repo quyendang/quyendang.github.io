@@ -210,7 +210,7 @@
                     .then((response) => response.json())
                     .then((data) => {
                         if (data && data.code === 1 && data.ret_data) {
-                            var flow_balance = data.ret_data.flow_balance;
+                            var flow_balance = 1000 - data.ret_data.flow_balance;
                             var flow_all_buy = data.ret_data.flow_all_buy;
                             var usagePercentage = (flow_balance / flow_all_buy) * 100;
                             var per = usagePercentage.toFixed(2);
