@@ -68,7 +68,7 @@
             <h1>Device List</h1>
             <!-- Thêm phần tử <span> để hiển thị showUseFlow -->
             <div id="showUseFlow1" style="padding: 5px;"></div>
-            <div id="showUseFlow2" style="padding: 5px;"></div>
+            <div id="showUseFlow2" style="padding-top: 5px; padding-right: 5px; padding-bottom: 10px; padding-left: 5px;"></div>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -79,11 +79,12 @@
                         <th>Last Update</th>
                         <th>IP Count</th>
                         <th>Impression</th>
-                        <th>Click</th>
+                        <!-- <th>Click</th> -->
                         <th>No Ads</th>
-                        <th>Crash</th>
-                        <th>RAM</th>
+                        <!-- <th>Crash</th> -->
+                        <!-- <th>RAM</th> -->
                         <th>Publisher</th>
+                        <th>Jsv</th>
                         <th>Sdk</th>
                         <th>Action</th>
                     </tr>
@@ -126,26 +127,26 @@
 
                         var timeAgoString = "";
                         if (timeAgo.asSeconds() < 60) {
-                            timeAgoString = Math.round(timeAgo.asSeconds()) + "s ago";
+                            timeAgoString = Math.round(timeAgo.asSeconds()) + ".s";
                         } else if (timeAgo.asMinutes() < 60) {
-                            timeAgoString = Math.round(timeAgo.asMinutes()) + " minutes ago";
+                            timeAgoString = Math.round(timeAgo.asMinutes()) + ".minutes";
                         } else if (timeAgo.asHours() < 24) {
-                            timeAgoString = Math.round(timeAgo.asHours()) + " hours ago";
+                            timeAgoString = Math.round(timeAgo.asHours()) + ".hours";
                         } else {
-                            timeAgoString = Math.round(timeAgo.asDays()) + " days ago";
+                            timeAgoString = Math.round(timeAgo.asDays()) + ".days";
                         }
 
                         deviceListHTML += ">";
                         deviceListHTML += "<td>" + count + "</td>";
                         deviceListHTML += "<td><div";
                         if (diffMinutes > 10) {
-                            deviceListHTML += ' class="spinner-grow text-danger" role="status"';
+                            deviceListHTML += ' class="spinner-grow text-danger spinner-grow-sm" role="status"';
                         } else if (device.numOfNoAds > 3000) {
-                            deviceListHTML += ' class="spinner-border text-warning" role="status"';
+                            deviceListHTML += ' class="spinner-border text-warning spinner-border-sm" role="status"';
                         } else if (diffMinutes >= 3 && diffMinutes <= 10) {
-                            deviceListHTML += ' class="spinner-grow text-dark" role="status"';
+                            deviceListHTML += ' class="spinner-grow text-dark spinner-grow-sm" role="status"';
                         } else {
-                            deviceListHTML += ' class="spinner-border text-success" role="status"';
+                            deviceListHTML += ' class="spinner-border text-success spinner-border-sm" role="status"';
                         }
                         deviceListHTML += "></div></td>";
                         deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country ? device.country.toLowerCase() : "") + '"></span></td>';
@@ -153,12 +154,13 @@
                         deviceListHTML += "<td>" + timeAgoString + "</td>";
                         deviceListHTML += "<td>" + device.numOfIp.toLocaleString() + "</td>";
                         deviceListHTML += "<td>" + device.numOfImpression.toLocaleString() + "</td>";
-                        deviceListHTML += "<td>" + device.numOfBannerClick + "-" + device.numOfInterClick + "</td>";
+                        // deviceListHTML += "<td>" + device.numOfBannerClick + "-" + device.numOfInterClick + "</td>";
                         deviceListHTML += "<td>" + (device.numOfNoAds ? device.numOfNoAds.toLocaleString() : 0) + "</td>";
-                        deviceListHTML += "<td>" + device.crash + "</td>";
-                        deviceListHTML += '<td><div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + calculateRamUsage(device.ram) + '%"></div></div>' + formatBytes(device.ram) + "</td>";
+                        // deviceListHTML += "<td>" + device.crash + "</td>";
+                        // deviceListHTML += '<td><div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + calculateRamUsage(device.ram) + '%"></div></div>' + formatBytes(device.ram) + "</td>";
                         deviceListHTML += "<td>" + device.pub + "</td>";
-                        deviceListHTML += "<td>" + device.jsv + "</td>";
+                        deviceListHTML += "<td>" + parseJsv(device.jsv) + "</td>";
+                        deviceListHTML += "<td><div class='text-white badge bg-primary text-wrap' style='width: 6rem;'>"+ parseVersion(device.jsv)+"</div></td>";
                         deviceListHTML += '<td><button class="btn btn-danger btn-sm" onclick="deleteDevice(\'' + deviceId + "')\">Delete</button></td>";
                         deviceListHTML += "</tr>";
                         count++;
@@ -247,6 +249,16 @@
                 const i = Math.floor(Math.log(bytes) / Math.log(k));
 
                 return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+            }
+
+            function parseJsv(jsv) {
+                const myArray = jsv.split("|");
+                return myArray[0].replace("sdk_", "");
+            }
+
+            function parseVersion(jsv) {
+                const myArray = jsv.split("|");
+                return myArray[1].replace("afma-sdk-i-","");
             }
 
             function calculateRamUsage(ram) {
