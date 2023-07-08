@@ -182,7 +182,7 @@
     var usagePercentage = (useFlow / totalFlow) * 100;
     var per = usagePercentage.toFixed(2);
     var showUseFlow = data.data[0].showUseFlow
-    document.getElementById("showUseFlow1").innerHTML = '<span>OkeyProxy</span><div class="progress"><div class="progress-bar progress-bar-striped" role="progressbar" style="width: ' + per + '%"></div>'+showUseFlow+'</div>';
+    document.getElementById("showUseFlow1").innerHTML = '<span>OkeyProxy</span><div class="progress"><div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ' + per + '%"></div>'+showUseFlow+'</div>';
   }
 })
 .catch(error => {
@@ -203,7 +203,7 @@ fetch('https://webapi.ipmars.com/user/get_user_info', {
     var flow_all_buy = data.ret_data.flow_all_buy;
     var usagePercentage = (flow_balance / flow_all_buy) * 100;
     var per = usagePercentage.toFixed(2);
-    document.getElementById("showUseFlow2").innerHTML = '<span>IPmars</span><div class="progress"><div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ' + per + '%"></div>'+flow_balance+'GB</div>';
+    document.getElementById("showUseFlow2").innerHTML = '<span>IPmars</span><div class="progress"><div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: ' + per + '%"></div>'+flow_balance+'GB</div>';
   }
 })
 .catch(error => {
