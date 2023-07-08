@@ -139,13 +139,13 @@
                         deviceListHTML += "<td>" + count + "</td>";
                         deviceListHTML += "<td><div";
                         if (diffMinutes > 10) {
-                            deviceListHTML += ' class="red-circle"';
+                            deviceListHTML += ' class="spinner-grow text-danger" role="status"';
                         } else if (device.numOfNoAds > 3000) {
-                            deviceListHTML += ' class="orange-circle"';
+                            deviceListHTML += ' class="spinner-border text-warning" role="status"';
                         } else if (diffMinutes >= 3 && diffMinutes <= 10) {
-                            deviceListHTML += ' class="pink-circle"';
+                            deviceListHTML += ' class="spinner-grow text-dark" role="status"';
                         } else {
-                            deviceListHTML += ' class="green-circle"';
+                            deviceListHTML += ' class="spinner-border text-success" role="status"';
                         }
                         deviceListHTML += "></div></td>";
                         deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country ? device.country.toLowerCase() : "") + '"></span></td>';
