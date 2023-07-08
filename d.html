@@ -61,9 +61,8 @@
     <div class="container">
         <h1>Device List</h1>
         <!-- Thêm phần tử <span> để hiển thị showUseFlow -->
-        <span id="showUseFlow1"></span>
-        <br>
-        <span id="showUseFlow2"></span>
+        <div id="showUseFlow1" style="padding: 5px;"></div>
+        <div id="showUseFlow2" style="padding: 5px;"></div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -183,7 +182,7 @@
     var usagePercentage = (useFlow / totalFlow) * 100;
     var per = usagePercentage.toFixed(2);
     var showUseFlow = data.data[0].showUseFlow
-    document.getElementById("showUseFlow1").innerHTML = '<div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + per + '%"></div>'+showUseFlow+'</div>';
+    document.getElementById("showUseFlow1").innerHTML = '<span>OkeyProxy</span><div class="progress"><div class="progress-bar progress-bar-striped" role="progressbar" style="width: ' + per + '%"></div>'+showUseFlow+'</div>';
   }
 })
 .catch(error => {
@@ -204,7 +203,7 @@ fetch('https://webapi.ipmars.com/user/get_user_info', {
     var flow_all_buy = data.ret_data.flow_all_buy;
     var usagePercentage = (flow_balance / flow_all_buy) * 100;
     var per = usagePercentage.toFixed(2);
-    document.getElementById("showUseFlow2").innerHTML = '<div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + per + '%"></div>'+flow_balance+'GB</div>';
+    document.getElementById("showUseFlow2").innerHTML = '<span>IPmars</span><div class="progress"><div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ' + per + '%"></div>'+flow_balance+'GB</div>';
   }
 })
 .catch(error => {
