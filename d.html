@@ -141,8 +141,6 @@
                         deviceListHTML += "<td><div";
                         if (diffMinutes > 10) {
                             deviceListHTML += ' class="spinner-grow text-danger spinner-grow-sm" role="status"';
-                        } else if (device.numOfNoAds > 3000) {
-                            deviceListHTML += ' class="spinner-border text-warning spinner-border-sm" role="status"';
                         } else if (diffMinutes >= 3 && diffMinutes <= 10) {
                             deviceListHTML += ' class="spinner-grow text-dark spinner-grow-sm" role="status"';
                         } else {
@@ -155,7 +153,12 @@
                         deviceListHTML += "<td>" + device.numOfIp.toLocaleString() + "</td>";
                         deviceListHTML += "<td>" + device.numOfImpression.toLocaleString() + "</td>";
                         // deviceListHTML += "<td>" + device.numOfBannerClick + "-" + device.numOfInterClick + "</td>";
-                        deviceListHTML += "<td>" + (device.numOfNoAds ? device.numOfNoAds.toLocaleString() : 0) + "</td>";
+
+                        if (device.numOfNoAds > 3000){
+                          deviceListHTML += "<td class='text-danger'>" + (device.numOfNoAds ? device.numOfNoAds.toLocaleString() : 0) + "</td>";
+                        } else {
+                          deviceListHTML += "<td>" + (device.numOfNoAds ? device.numOfNoAds.toLocaleString() : 0) + "</td>";
+                        }
                         // deviceListHTML += "<td>" + device.crash + "</td>";
                         // deviceListHTML += '<td><div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + calculateRamUsage(device.ram) + '%"></div></div>' + formatBytes(device.ram) + "</td>";
                         deviceListHTML += "<td>" + device.pub + "</td>";
