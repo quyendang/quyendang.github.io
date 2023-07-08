@@ -193,7 +193,7 @@
                             var per = usagePercentage.toFixed(2);
                             var showUseFlow = data.data[0].showUseFlow;
                             document.getElementById("showUseFlow1").innerHTML =
-                                '<span>OkeyProxy</span><div class="progress"><div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ' + per + '%"></div>' + showUseFlow + "</div>";
+                                '<div class="progress"><div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ' + per + '%"></div>' + showUseFlow + " Okey</div>";
                         }
                     })
                     .catch((error) => {
@@ -214,7 +214,7 @@
                             var usagePercentage = (flow_balance / flow_all_buy) * 100;
                             var per = usagePercentage.toFixed(2);
                             document.getElementById("showUseFlow2").innerHTML =
-                                '<span>IPmars</span><div class="progress"><div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: ' + per + '%"></div>' + flow_balance + "GB</div>";
+                                '<div class="progress"><div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: ' + per + '%"></div>' + flow_balance + "G IPmars</div>";
                         }
                     })
                     .catch((error) => {
