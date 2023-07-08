@@ -215,7 +215,7 @@
                             var usagePercentage = (flow_balance / flow_all_buy) * 100;
                             var per = usagePercentage.toFixed(2);
                             document.getElementById("showUseFlow2").innerHTML =
-                                '<div class="progress"><div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: ' + per + '%"></div>' + flow_balance + "G IPmars</div>";
+                                '<div class="progress"><div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: ' + per + '%"></div>' + flow_balance.toFixed(2) + "G IPmars</div>";
                         }
                     })
                     .catch((error) => {
