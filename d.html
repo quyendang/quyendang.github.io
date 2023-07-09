@@ -139,13 +139,18 @@
                         deviceListHTML += ">";
                         deviceListHTML += "<td>" + count + "</td>";
                         deviceListHTML += "<td><div";
-                        if (diffMinutes > 10) {
+                        if (device.limit) {
+                          deviceListHTML += ' class="spinner-grow spinner-grow-sm text-danger" role="status"';
+                        } else{
+                          if (diffMinutes > 10) {
                             deviceListHTML += ' class="spinner-grow text-danger spinner-grow-sm" role="status"';
                         } else if (diffMinutes >= 3 && diffMinutes <= 10) {
                             deviceListHTML += ' class="spinner-grow text-dark spinner-grow-sm" role="status"';
                         } else {
                             deviceListHTML += ' class="spinner-border text-success spinner-border-sm" role="status"';
                         }
+                        }
+                        
                         deviceListHTML += "></div></td>";
                         deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country ? device.country.toLowerCase() : "") + '"></span></td>';
                         deviceListHTML += "<td>" + device.ip + "</td>";
@@ -156,7 +161,8 @@
                           deviceListHTML += "<td>" + device.numOfIp.toLocaleString() + "<span class='badge bg-success text-white'>+"+ (device.numOfIp - device.oldIpCount).toLocaleString()+"</span></td>";
                           deviceListHTML += "<td>" + device.numOfImpression.toLocaleString() + "<span class='badge bg-success text-white'>+"+ (device.numOfImpression - device.oldImpressionCount).toLocaleString()+"</span></td>";
                           deviceListHTML += "<td>" + (device.numOfNoAds ? device.numOfNoAds.toLocaleString() : 0) + "<span class='badge bg-danger text-white'>+"+ (device.numOfNoAds - device.oldNoAdsCount).toLocaleString()+"</span></td>";
-                          updateDevice(deviceId, device.numOfIp, device.numOfImpression,device.numOfNoAds);
+                          var warning = (device.numOfNoAds - device.oldNoAdsCount) > (device.numOfImpression - device.oldImpressionCount);
+                          updateDevice(deviceId, device.numOfIp, device.numOfImpression,device.numOfNoAds, warning);
                         } else{
                           deviceListHTML += "<td>" + device.numOfIp.toLocaleString() + "</td>";
                           deviceListHTML += "<td>" + device.numOfImpression.toLocaleString() + "</td>";
@@ -247,12 +253,13 @@
                 }
             }
 
-            function updateDevice(deviceId, ipcount, impress, noads){
+            function updateDevice(deviceId, ipcount, impress, noads, warning){
                 const deviceRef = firebase.database().ref("devices/" + deviceId);
                 deviceRef.update({
                   'oldIpCount': ipcount,
                   'oldImpressionCount': impress,
-                  'oldNoAdsCount': noads
+                  'oldNoAdsCount': noads,
+                  'limit': warning
                 });
             }
 
