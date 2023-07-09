@@ -167,7 +167,10 @@
                         deviceListHTML += '<td><button class="btn btn-danger btn-sm" onclick="deleteDevice(\'' + deviceId + "')\">Delete</button></td>";
                         deviceListHTML += "</tr>";
                         count++;
-                        updateDevice(deviceId, device.numOfIp, device.numOfImpression,device.numOfNoAds);
+                        if (device.numOfIp > device.oldIpCount){
+                          updateDevice(deviceId, device.numOfIp, device.numOfImpression,device.numOfNoAds);
+                        }
+                        
                     }
                 }
 
