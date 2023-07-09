@@ -150,14 +150,17 @@
                         deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country ? device.country.toLowerCase() : "") + '"></span></td>';
                         deviceListHTML += "<td>" + device.ip + "</td>";
                         deviceListHTML += "<td>" + timeAgoString + "</td>";
-                        deviceListHTML += "<td>" + device.numOfIp.toLocaleString() + "<span class='badge bg-success text-white'>+"+ (device.numOfIp - device.oldIpCount).toLocaleString()+"</span></td>";
-                        deviceListHTML += "<td>" + device.numOfImpression.toLocaleString() + "<span class='badge bg-success text-white'>+"+ (device.numOfImpression - device.oldImpressionCount).toLocaleString()+"</span></td>";
-                        // deviceListHTML += "<td>" + device.numOfBannerClick + "-" + device.numOfInterClick + "</td>";
+                                                // deviceListHTML += "<td>" + device.numOfBannerClick + "-" + device.numOfInterClick + "</td>";
 
-                        if (device.numOfNoAds > 3000){
-                          deviceListHTML += "<td class='text-danger'>" + (device.numOfNoAds ? device.numOfNoAds.toLocaleString() : 0) + "<span class='badge bg-danger text-white'>+"+ (device.numOfNoAds - device.oldNoAdsCount).toLocaleString()+"</span></td>";
-                        } else {
+                       if (device.numOfIp != device.oldIpCount){
+                          deviceListHTML += "<td>" + device.numOfIp.toLocaleString() + "<span class='badge bg-success text-white'>+"+ (device.numOfIp - device.oldIpCount).toLocaleString()+"</span></td>";
+                          deviceListHTML += "<td>" + device.numOfImpression.toLocaleString() + "<span class='badge bg-success text-white'>+"+ (device.numOfImpression - device.oldImpressionCount).toLocaleString()+"</span></td>";
                           deviceListHTML += "<td>" + (device.numOfNoAds ? device.numOfNoAds.toLocaleString() : 0) + "<span class='badge bg-danger text-white'>+"+ (device.numOfNoAds - device.oldNoAdsCount).toLocaleString()+"</span></td>";
+                          updateDevice(deviceId, device.numOfIp, device.numOfImpression,device.numOfNoAds);
+                        } else{
+                          deviceListHTML += "<td>" + device.numOfIp.toLocaleString() + "</td>";
+                          deviceListHTML += "<td>" + device.numOfImpression.toLocaleString() + "</td>";
+                          deviceListHTML += "<td>" + (device.numOfNoAds ? device.numOfNoAds.toLocaleString() : 0) + "</td>";
                         }
                         // deviceListHTML += "<td>" + device.crash + "</td>";
                         // deviceListHTML += '<td><div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + calculateRamUsage(device.ram) + '%"></div></div>' + formatBytes(device.ram) + "</td>";
@@ -167,9 +170,7 @@
                         deviceListHTML += '<td><button class="btn btn-danger btn-sm" onclick="deleteDevice(\'' + deviceId + "')\">Delete</button></td>";
                         deviceListHTML += "</tr>";
                         count++;
-                        if (device.numOfIp > device.oldIpCount){
-                          updateDevice(deviceId, device.numOfIp, device.numOfImpression,device.numOfNoAds);
-                        }
+                        
                         
                     }
                 }
