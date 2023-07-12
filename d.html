@@ -193,36 +193,36 @@
 
             function fetchData() {
                 // Gửi yêu cầu API và xử lý phản hồi
-                fetch("https://api.okeyproxy.com/ipglobal-api/api/staticMeal/trafficInformation", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        account: "akmesekestiu@hotmail.com",
-                        token: "iaa5j093eu40mwuuobyce90wuih5is",
-                    }),
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        // Xử lý phản hồi từ API và hiển thị dữ liệu
-                        if (data && data.code === 200 && data.data && data.data.length > 0) {
-                            var useFlow = data.data[0].useFlow;
-                            var totalFlow = data.data[0].totalFlow;
-                            var usagePercentage = (useFlow / totalFlow) * 100;
-                            var per = usagePercentage.toFixed(2);
-                            var showUseFlow = data.data[0].showUseFlow;
-                            document.getElementById("showUseFlow1").innerHTML =
-                                '<div class="progress"><div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ' + per + '%"></div>' + showUseFlow + " Okey</div>";
-                        }
-                    })
-                    .catch((error) => {
-                        console.error("Error:", error);
-                    });
+                // fetch("https://api.okeyproxy.com/ipglobal-api/api/staticMeal/trafficInformation", {
+                //     method: "POST",
+                //     headers: {
+                //         "Content-Type": "application/json",
+                //     },
+                //     body: JSON.stringify({
+                //         account: "akmesekestiu@hotmail.com",
+                //         token: "iaa5j093eu40mwuuobyce90wuih5is",
+                //     }),
+                // })
+                //     .then((response) => response.json())
+                //     .then((data) => {
+                //         // Xử lý phản hồi từ API và hiển thị dữ liệu
+                //         if (data && data.code === 200 && data.data && data.data.length > 0) {
+                //             var useFlow = data.data[0].useFlow;
+                //             var totalFlow = data.data[0].totalFlow;
+                //             var usagePercentage = (useFlow / totalFlow) * 100;
+                //             var per = usagePercentage.toFixed(2);
+                //             var showUseFlow = data.data[0].showUseFlow;
+                //             document.getElementById("showUseFlow1").innerHTML =
+                //                 '<div class="progress"><div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ' + per + '%"></div>' + showUseFlow + " Okey</div>";
+                //         }
+                //     })
+                //     .catch((error) => {
+                //         console.error("Error:", error);
+                //     });
 
-                fetch("https://webapi.ipmars.com/user/get_user_info", {
+                fetch("https://webapi.s5.abcproxy.com/user/user_info", {
                     headers: {
-                        authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHByX3RpbWUiOiIxNjg4ODAxNzIwIiwidWlkIjoiNzgzOSJ9.wdPBdUBx_smYx0vlDi4f39vO14Z5-X-_7Hm8c2_WWNE",
+                        authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHByX3RpbWUiOiIxNjg5MTU4NDAwIiwidWlkIjoiMTYzODQifQ.dHFg3eXcvwO6tf3iZkSxBooWPlBu_ofGrTIVw6M39es",
                     },
                     method: "POST",
                 })
