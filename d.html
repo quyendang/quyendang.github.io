@@ -67,7 +67,7 @@
         <div class="container">
             <h1>Device List</h1>
             <!-- Thêm phần tử <span> để hiển thị showUseFlow -->
-            <!-- <div id="showUseFlow1" style="padding: 5px; max-width: 320px;"></div> -->
+            <div id="showUseFlow1" style="padding: 5px; max-width: 320px;"></div>
             
             <table class="table table-striped">
                 <thead>
@@ -234,6 +234,7 @@
                             var flow_all_buy = data.ret_data.flow_all_buy;
                             var usagePercentage = (flow_balance / flow_all_buy) * 100;
                             var per = usagePercentage.toFixed(2);
+                              document.getElementById("showUseFlow1").innerHTML = '<p class="fs-2">'+flow_balance+' GB</p>';
                             document.getElementById("showUseFlow2").innerHTML =
                                 '<div class="progress" style="height: 20px;"><div class="progress-bar bg-danger" role="progressbar" style="width: ' + per + '%;" aria-valuenow="'+ per+'" aria-valuemin="0" aria-valuemax="100"></div>' + per + "%</div>";
                         }
