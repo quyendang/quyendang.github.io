@@ -1,4 +1,3 @@
-
 <!-- var firebaseConfig = {
       apiKey: "AIzaSyCVE4U4wQvglPuKRi06ezTzwf3xagx8uUs",
       authDomain: "nscmusic.asia",
@@ -63,141 +62,55 @@
                 }
             }
             .dataTables_length,
-.dataTables_wrapper {
-  font-size: 1.6rem;
-  select,
-  input {
-    background-color: #f9f9f9;
-    border: 1px solid #999;
-    border-radius: 4px;
-    height: 3rem;
-    line-height: 2;
-    font-size: 1.8rem;
-    color: #333;
-  }
+            .dataTables_wrapper {
+                font-size: 1.6rem;
+                select,
+                input {
+                    background-color: #f9f9f9;
+                    border: 1px solid #999;
+                    border-radius: 4px;
+                    height: 3rem;
+                    line-height: 2;
+                    font-size: 1.8rem;
+                    color: #333;
+                }
 
-  .dataTables_length,
-  .dataTables_filter {
-    margin-top: 30px;
-    margin-right: 20px;
-    margin-bottom: 10px;
-    display: inline-flex;
-  }
-}
+                .dataTables_length,
+                .dataTables_filter {
+                    margin-top: 30px;
+                    margin-right: 20px;
+                    margin-bottom: 10px;
+                    display: inline-flex;
+                }
+            }
 
-// paginate
+            // paginate
 
-.paginate_button {
-  min-width: 4rem;
-  display: inline-block;
-  text-align: center;
-  padding: 1rem 1.6rem;
-  margin-top: -1rem;
-  border: 2px solid lightblue;
-  &:not(.previous) {
-    border-left: none;
-  }
-  &.previous {
-    border-radius: 8px 0 0 8px;
-    min-width: 7rem;
-  }
-  &.next {
-    border-radius: 0 8px 8px 0;
-    min-width: 7rem;
-  }
+            .paginate_button {
+                min-width: 4rem;
+                display: inline-block;
+                text-align: center;
+                padding: 1rem 1.6rem;
+                margin-top: -1rem;
+                border: 2px solid lightblue;
+                &:not(.previous) {
+                    border-left: none;
+                }
+                &.previous {
+                    border-radius: 8px 0 0 8px;
+                    min-width: 7rem;
+                }
+                &.next {
+                    border-radius: 0 8px 8px 0;
+                    min-width: 7rem;
+                }
 
-  &:hover {
-    cursor: pointer;
-    background-color: #eee;
-    text-decoration: none;
-  }
-}
-//// jjj
-              // sets
-
-$gl-ms         : "screen and (max-width: 23.5em)"; // up to 360px
-$gl-xs         : "screen and (max-width: 35.5em)"; // up to 568px
-$gl-sm         : "screen and (max-width: 48em)";   // max 768px
-$gl-md         : "screen and (max-width: 64em)";   // max 1024px
-$gl-lg         : "screen and (max-width: 80em)";   // max 1280px
-
-// table style
-
-table 			      { 
-  border-spacing: 1; 
-  border-collapse: collapse; 
-  background:white;
-  border-radius:6px;
-  overflow:hidden;
-  max-width:800px; 
-  width:100%;
-  margin:0 auto;
-  position:relative;
-  
-  *               { position:relative }
-  
-  td,th           { padding-left:8px}
-
-  thead tr        { 
-    height:60px;
-    background:#FFED86;
-    font-size:16px;
-  }
-  
-  tbody tr        { height:48px; border-bottom:1px solid #E3F1D5 ;
-    &:last-child  { border:0; }
-  }
-  
- 	td,th 					{ text-align:left;
-		&.l 					{ text-align:right }
-		&.c 					{ text-align:center }
-		&.r 					{ text-align:center }
-	}
-}
-
-
-@media #{$gl-xs}              {
-  
-  table					              { display:block;
-	  > *,tr,td,th              { display:block }
-    
-    thead                     { display:none }
-    tbody tr                  { height:auto; padding:8px 0;
-      td                      { padding-left:45%; margin-bottom:12px;
-        &:last-child          { margin-bottom:0 }
-        &:before              { 
-          position:absolute;
-          font-weight:700;
-          width:40%;
-          left:10px;
-          top:0
-        }
-        
-        &:nth-child(1):before { content:"Code";}
-        &:nth-child(2):before { content:"Stock";}
-        &:nth-child(3):before { content:"Cap";}
-        &:nth-child(4):before { content:"Inch";}
-        &:nth-child(5):before { content:"Box Type";}
-      }        
-    }
-  }
-}  	
-
-
-
-
-// body style
-
-body               { 
-  background:#9BC86A; 
-  font:400 14px 'Calibri','Arial';
-  padding:20px;
-}
-
-blockquote {
-  color:white;
-  text-align:center;
-}
+                &:hover {
+                    cursor: pointer;
+                    background-color: #eee;
+                    text-decoration: none;
+                }
+            }
         </style>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
@@ -206,9 +119,8 @@ blockquote {
         <div class="container">
             <h1>Device List</h1>
             <!-- Thêm phần tử <span> để hiển thị showUseFlow -->
-            
-            
-            <table cellspacing="0" width="100%">
+
+            <table class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>*</th>
@@ -228,25 +140,6 @@ blockquote {
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tfoot>
-                <tr>
-                  <th>*</th>
-                        <th>♌︎</th>
-                        <th>@</th>
-                        <th>IP</th>
-                        <th>Last Update</th>
-                        <th>IP Count</th>
-                        <th>Impression</th>
-                        <!-- <th>Click</th> -->
-                        <th>No Ads</th>
-                        <!-- <th>Crash</th> -->
-                        <!-- <th>RAM</th> -->
-                        <th>Publisher</th>
-                        <th>Jsv</th>
-                        <th>Sdk</th>
-                        <th>Action</th>
-                </tr>
-              </tfoot>
                 <tbody id="deviceList"></tbody>
             </table>
             <div id="showUseFlow1" style="padding: 5px; max-width: 320px;"></div>
@@ -279,7 +172,7 @@ blockquote {
 
                 // Sắp xếp mảng theo thuộc tính "name"
                 entries.sort((a, b) => {
-                  return a[1].pub.localeCompare(b[1].pub);
+                    return a[1].pub.localeCompare(b[1].pub);
                 });
 
                 // Tạo một đối tượng mới từ mảng đã sắp xếp
@@ -338,7 +231,7 @@ blockquote {
                             play(warning);
                             updateDevice(deviceId, device.numOfIp, device.numOfImpression, device.numOfNoAds, warning);
                         } else {
-                            deviceListHTML += "<td>" + (device.numOfIp ? device.numOfIp.toLocaleString() : 0)  + "</td>";
+                            deviceListHTML += "<td>" + (device.numOfIp ? device.numOfIp.toLocaleString() : 0) + "</td>";
                             deviceListHTML += "<td>" + (device.numOfImpression ? device.numOfImpression.toLocaleString() : 0) + "</td>";
                             deviceListHTML += "<td>" + (device.numOfNoAds ? device.numOfNoAds.toLocaleString() : 0) + "</td>";
                         }
@@ -400,9 +293,15 @@ blockquote {
                             var flow_all_buy = data.ret_data.flow_all_buy;
                             var usagePercentage = (flow_balance / flow_all_buy) * 100;
                             var per = usagePercentage.toFixed(2);
-                              document.getElementById("showUseFlow1").innerHTML = '<p class="fs-2">'+flow_balance+' GB</p>';
+                            document.getElementById("showUseFlow1").innerHTML = '<p class="fs-2">' + flow_balance + " GB</p>";
                             document.getElementById("showUseFlow2").innerHTML =
-                                '<div class="progress" style="height: 20px;"><div class="progress-bar bg-danger" role="progressbar" style="width: ' + per + '%;" aria-valuenow="'+ per+'" aria-valuemin="0" aria-valuemax="100"></div>' + per + "%</div>";
+                                '<div class="progress" style="height: 20px;"><div class="progress-bar bg-danger" role="progressbar" style="width: ' +
+                                per +
+                                '%;" aria-valuenow="' +
+                                per +
+                                '" aria-valuemin="0" aria-valuemax="100"></div>' +
+                                per +
+                                "%</div>";
                         }
                     })
                     .catch((error) => {
