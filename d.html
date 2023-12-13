@@ -190,6 +190,8 @@
                         var lastUpdateTime = moment(device.lastUpdateTime);
                         var timeAgo = moment.duration(currentTime.diff(lastUpdateTime));
 
+
+
                         var timeAgoString = "";
                         if (timeAgo.asSeconds() < 60) {
                             timeAgoString = Math.round(timeAgo.asSeconds()) + ".s";
@@ -199,6 +201,14 @@
                             timeAgoString = Math.round(timeAgo.asHours()) + ".hours";
                         } else {
                             timeAgoString = Math.round(timeAgo.asDays()) + ".days";
+                        }
+
+                        if (timeAgo.asMinutes() > 3 && timeAgo.asMinutes() < 15){
+                            deviceListHTML += ' class="table-warning"'
+                        } else if (timeAgo.asMinutes() >= 15) {
+                            deviceListHTML += ' class="table-danger"'
+                        } else {
+                            deviceListHTML += ' class="table-success"'
                         }
 
                         deviceListHTML += ">";
