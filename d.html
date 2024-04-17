@@ -129,7 +129,7 @@
                     <tr>
                         <th>*</th>
                         <th>♌︎</th>
-                        <!-- <th>@</th> -->
+                        <th>@</th>
                         <th>IP</th>
                         <th>Last Update</th>
                         <!-- <th>IP Count</th> -->
@@ -231,7 +231,8 @@
                         }
 
                         deviceListHTML += "></div></td>";
-                        // deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country ? device.country.toLowerCase() : "") + '"></span></td>';
+                        // deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country ? device.country.toLowerCase() : "ca") + '"></span></td>';
+                        deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country ? (device.country == "VN" ? getCountryCodeFromIP(device.ip, deviceId) : device.country.toLowerCase()) : "ca") + '"></span></td>';
                         deviceListHTML += "<td>" + device.ip + "</td>";
                         deviceListHTML += "<td>" + timeAgoString + "</td>";
                         // deviceListHTML += "<td>" + device.numOfBannerClick + "-" + device.numOfInterClick + "</td>";
@@ -266,34 +267,6 @@
             fetchData();
             setInterval(fetchData, 100000);
             function fetchData() {
-                // Gửi yêu cầu API và xử lý phản hồi
-                // fetch("https://api.okeyproxy.com/ipglobal-api/api/staticMeal/trafficInformation", {
-                //     method: "POST",
-                //     headers: {
-                //         "Content-Type": "application/json",
-                //     },
-                //     body: JSON.stringify({
-                //         account: "akmesekestiu@hotmail.com",
-                //         token: "iaa5j093eu40mwuuobyce90wuih5is",
-                //     }),
-                // })
-                //     .then((response) => response.json())
-                //     .then((data) => {
-                //         // Xử lý phản hồi từ API và hiển thị dữ liệu
-                //         if (data && data.code === 200 && data.data && data.data.length > 0) {
-                //             var useFlow = data.data[0].useFlow;
-                //             var totalFlow = data.data[0].totalFlow;
-                //             var usagePercentage = (useFlow / totalFlow) * 100;
-                //             var per = usagePercentage.toFixed(2);
-                //             var showUseFlow = data.data[0].showUseFlow;
-                //             document.getElementById("showUseFlow1").innerHTML =
-                //                 '<div class="progress"><div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ' + per + '%"></div>' + showUseFlow + " Okey</div>";
-                //         }
-                //     })
-                //     .catch((error) => {
-                //         console.error("Error:", error);
-                //     });
-
                 fetch("https://webapi.s5.abcproxy.com/user/user_info", {
                     headers: {
                         authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHByX3RpbWUiOiIxNjg5MTU4NDAwIiwidWlkIjoiMTYzODQifQ.dHFg3eXcvwO6tf3iZkSxBooWPlBu_ofGrTIVw6M39es",
@@ -347,6 +320,13 @@
                 });
             }
 
+            function updateCountry(deviceId, country) {
+                const deviceRef = firebase.database().ref("devices/" + deviceId);
+                deviceRef.update({
+                    country: country
+                });
+            }
+
             function formatBytes(bytes, decimals = 2) {
                 if (!+bytes) return "0 Bytes";
 
@@ -362,6 +342,18 @@
             function parseJsv(jsv) {
                 const myArray = jsv.split("|");
                 return myArray[0].replace("sdk_", "");
+            }
+
+            async function getCountryCodeFromIP(ipAddress, deviceId) {
+                try {
+                    const response = await fetch(`https://ipinfo.io/${ipAddress}/json`);
+                    const data = await response.json();
+                    const countryCode = data.country;
+                    updateCountry(deviceId, countryCode)
+                    return countryCode;
+                } catch (error) {
+                    return "US";
+                }
             }
 
             function parseVersion(jsv) {
