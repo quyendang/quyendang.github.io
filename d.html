@@ -84,7 +84,11 @@
                 }
             }
 
-            // paginate
+
+            td.colorfy {
+                background: #EE82EE !important;
+                color: black;
+            }
 
             .paginate_button {
                 min-width: 4rem;
@@ -125,10 +129,10 @@
                     <tr>
                         <th>*</th>
                         <th>♌︎</th>
-                        <th>@</th>
+                        <!-- <th>@</th> -->
                         <th>IP</th>
                         <th>Last Update</th>
-                        <th>IP Count</th>
+                        <!-- <th>IP Count</th> -->
                         <th>Impression</th>
                         <!-- <th>Click</th> -->
                         <th>No Ads</th>
@@ -136,7 +140,7 @@
                         <!-- <th>RAM</th> -->
                         <th>Publisher</th>
                         <th>Jsv</th>
-                        <th>Sdk</th>
+                        <!-- <th>Sdk</th> -->
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -227,13 +231,13 @@
                         }
 
                         deviceListHTML += "></div></td>";
-                        deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country ? device.country.toLowerCase() : "") + '"></span></td>';
+                        // deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country ? device.country.toLowerCase() : "") + '"></span></td>';
                         deviceListHTML += "<td>" + device.ip + "</td>";
                         deviceListHTML += "<td>" + timeAgoString + "</td>";
                         // deviceListHTML += "<td>" + device.numOfBannerClick + "-" + device.numOfInterClick + "</td>";
 
                         if (device.numOfIp != device.oldIpCount) {
-                            deviceListHTML += "<td>" + device.numOfIp.toLocaleString() + "<span class='badge bg-success text-white'>+" + (device.numOfIp - device.oldIpCount).toLocaleString() + "</span></td>";
+                            // deviceListHTML += "<td>" + device.numOfIp.toLocaleString() + "<span class='badge bg-success text-white'>+" + (device.numOfIp - device.oldIpCount).toLocaleString() + "</span></td>";
                             deviceListHTML += "<td>" + device.numOfImpression.toLocaleString() + "<span class='badge bg-success text-white'>+" + (device.numOfImpression - device.oldImpressionCount).toLocaleString() + "</span></td>";
                             deviceListHTML +=
                                 "<td>" + (device.numOfNoAds ? device.numOfNoAds.toLocaleString() : 0) + "<span class='badge bg-danger text-white'>+" + (device.numOfNoAds - device.oldNoAdsCount).toLocaleString() + "</span></td>";
@@ -241,7 +245,7 @@
                             play(warning);
                             updateDevice(deviceId, device.numOfIp, device.numOfImpression, device.numOfNoAds, warning);
                         } else {
-                            deviceListHTML += "<td>" + (device.numOfIp ? device.numOfIp.toLocaleString() : 0) + "</td>";
+                            // deviceListHTML += "<td>" + (device.numOfIp ? device.numOfIp.toLocaleString() : 0) + "</td>";
                             deviceListHTML += "<td>" + (device.numOfImpression ? device.numOfImpression.toLocaleString() : 0) + "</td>";
                             deviceListHTML += "<td>" + (device.numOfNoAds ? device.numOfNoAds.toLocaleString() : 0) + "</td>";
                         }
@@ -249,7 +253,7 @@
                         // deviceListHTML += '<td><div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + calculateRamUsage(device.ram) + '%"></div></div>' + formatBytes(device.ram) + "</td>";
                         deviceListHTML += "<td>" + device.pub + "</td>";
                         deviceListHTML += "<td>" + parseJsv(device.jsv) + "</td>";
-                        deviceListHTML += "<td><div class='text-white badge bg-primary text-wrap' style='width: 6rem;'>" + parseVersion(device.jsv) + "</div></td>";
+                        // deviceListHTML += "<td><div class='text-white badge bg-primary text-wrap' style='width: 6rem;'>" + parseVersion(device.jsv) + "</div></td>";
                         deviceListHTML += '<td><button class="btn btn-danger btn-sm" onclick="deleteDevice(\'' + deviceId + "')\">Delete</button></td>";
                         deviceListHTML += "</tr>";
                         count++;
