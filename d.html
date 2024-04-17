@@ -232,7 +232,7 @@
 
                         deviceListHTML += "></div></td>";
                         // deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country ? device.country.toLowerCase() : "ca") + '"></span></td>';
-                        deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country2 ? (device.country2 == "VN" ? getCountryCodeFromIP(device.ip, deviceId) : device.country2.toLowerCase()) : "vn") + '"></span></td>';
+                        deviceListHTML += '<td><span class="flag-icon flag-icon-' + (device.country2 ? device.country2.toLowerCase() : getCountryCodeFromIP(device.ip, deviceId)) + '"></span></td>';
                         deviceListHTML += "<td>" + device.ip + "</td>";
                         deviceListHTML += "<td>" + timeAgoString + "</td>";
                         // deviceListHTML += "<td>" + device.numOfBannerClick + "-" + device.numOfInterClick + "</td>";
@@ -350,7 +350,7 @@
                     const data = await response.json();
                     const countryCode = data.country;
                     updateCountry(deviceId, countryCode)
-                    return countryCode;
+                    return countryCode.toLowerCase();
                 } catch (error) {
                     return "US";
                 }
