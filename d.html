@@ -139,6 +139,7 @@
                         <!-- <th>Crash</th> -->
                         <!-- <th>RAM</th> -->
                         <th>Publisher</th>
+                        <th>Download/Upload</th>
                         <th>Jsv</th>
                         <!-- <th>Sdk</th> -->
                         <th>Action</th>
@@ -253,6 +254,7 @@
                         // deviceListHTML += "<td>" + device.crash + "</td>";
                         // deviceListHTML += '<td><div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + calculateRamUsage(device.ram) + '%"></div></div>' + formatBytes(device.ram) + "</td>";
                         deviceListHTML += "<td>" + device.pub + "</td>";
+                        deviceListHTML += "<td>" + (device.totalDownloadedBytes ? bytesToSize(device.totalDownloadedBytes) : 0) + "/" + (device.totalUploadedBytes ? bytesToSize(device.totalUploadedBytes) : 0) + "</td>";
                         deviceListHTML += "<td>" + parseJsv(device.jsv) + "</td>";
                         // deviceListHTML += "<td><div class='text-white badge bg-primary text-wrap' style='width: 6rem;'>" + parseVersion(device.jsv) + "</div></td>";
                         deviceListHTML += '<td><button class="btn btn-danger btn-sm" onclick="deleteDevice(\'' + deviceId + "')\">Delete</button></td>";
@@ -294,6 +296,13 @@
                     .catch((error) => {
                         console.error("Error:", error);
                     });
+            }
+
+            function bytesToSize(bytes) {
+                const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+                if (bytes === 0) return '0 Byte';
+                const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+                return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
             }
 
             function deleteDevice(deviceId) {
