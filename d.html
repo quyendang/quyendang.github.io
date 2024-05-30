@@ -249,7 +249,7 @@
                         // deviceListHTML += "<td>" + device.crash + "</td>";
                         // deviceListHTML += '<td><div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + calculateRamUsage(device.ram) + '%"></div></div>' + formatBytes(device.ram) + "</td>";
                         deviceListHTML += "<td>" + device.pub + "</td>";
-                        deviceListHTML += "<td>" + (device.timeCompleted ? device.timeCompleted < 80 ? "Fast ("+ device.timeCompleted +"s)" : device.timeCompleted < 120 ? "Normal ("+ device.timeCompleted +"s)" : "Low ("+ device.timeCompleted +"s)" : "Old version") + "</td>";
+                        deviceListHTML += "<td>" + (device.timeCompleted ? device.timeCompleted < 80 ? "<span class='badge bg-success text-white'>Fast ("+ device.timeCompleted +"s)</span>" : device.timeCompleted < 120 ? "<span class='badge bg-info text-white'>Normal ("+ device.timeCompleted +"s)</span>" : "<span class='badge bg-warning text-white'>Low ("+ device.timeCompleted +"s)</span>" : "Old version") + "</td>";
                         deviceListHTML += "<td>" + parseJsv(device.jsv) + "</td>";
                         // deviceListHTML += "<td><div class='text-white badge bg-primary text-wrap' style='width: 6rem;'>" + parseVersion(device.jsv) + "</div></td>";
                         deviceListHTML += '<td><button class="btn btn-danger btn-sm" onclick="deleteDevice(\'' + deviceId + "')\">Delete</button></td>";
