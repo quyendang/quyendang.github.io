@@ -147,11 +147,6 @@
                 </thead>
                 <tbody id="deviceList"></tbody>
             </table>
-            <div id="showUseFlow1" style="padding: 5px; max-width: 320px;"></div>
-            <div id="showUseFlow2" style="padding-top: 5px; padding-right: 5px; padding-bottom: 10px; padding-left: 5px; max-width: 320px;"></div>
-            <a href="https://github.com/quyendang/MN/releases/download/Final/winrar-x64-620b3.exe" class="link-primary">winrar-x64-620b3.exe</a>
-            <a href="https://github.com/quyendang/MN/releases/download/Final/vcredist_x86.exe" class="link-secondary">vcredist_x86.exe</a>
-            <a href="https://github.com/quyendang/MN/releases/download/Final/Quyen4.zip" class="link-success">Quyen4.zip</a>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -254,7 +249,7 @@
                         // deviceListHTML += "<td>" + device.crash + "</td>";
                         // deviceListHTML += '<td><div class="progress"><div class="progress-bar progress-bar-gradient" role="progressbar" style="width: ' + calculateRamUsage(device.ram) + '%"></div></div>' + formatBytes(device.ram) + "</td>";
                         deviceListHTML += "<td>" + device.pub + "</td>";
-                        deviceListHTML += "<td>" + (device.timeCompleted ? device.timeCompleted < 100 ? "Fast ("+ device.timeCompleted +"s)" : device.timeCompleted < 150 ? "Normal ("+ device.timeCompleted +"s)" : "Low ("+ device.timeCompleted +"s)" : "Old version") + "</td>";
+                        deviceListHTML += "<td>" + (device.timeCompleted ? device.timeCompleted < 80 ? "Fast ("+ device.timeCompleted +"s)" : device.timeCompleted < 120 ? "Normal ("+ device.timeCompleted +"s)" : "Low ("+ device.timeCompleted +"s)" : "Old version") + "</td>";
                         deviceListHTML += "<td>" + parseJsv(device.jsv) + "</td>";
                         // deviceListHTML += "<td><div class='text-white badge bg-primary text-wrap' style='width: 6rem;'>" + parseVersion(device.jsv) + "</div></td>";
                         deviceListHTML += '<td><button class="btn btn-danger btn-sm" onclick="deleteDevice(\'' + deviceId + "')\">Delete</button></td>";
@@ -264,39 +259,6 @@
                 }
                 document.getElementById("deviceList").innerHTML = deviceListHTML;
             });
-
-            // Gọi hai hàm fetch mỗi 5 phút
-            fetchData();
-            setInterval(fetchData, 100000);
-            function fetchData() {
-                fetch("https://webapi.s5.abcproxy.com/user/user_info", {
-                    headers: {
-                        authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHByX3RpbWUiOiIxNjg5MTU4NDAwIiwidWlkIjoiMTYzODQifQ.dHFg3eXcvwO6tf3iZkSxBooWPlBu_ofGrTIVw6M39es",
-                    },
-                    method: "POST",
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        if (data && data.code === 1 && data.ret_data) {
-                            var flow_balance = 1000 - data.ret_data.flow_balance;
-                            var flow_all_buy = data.ret_data.flow_all_buy;
-                            var usagePercentage = (flow_balance / flow_all_buy) * 100;
-                            var per = usagePercentage.toFixed(2);
-                            document.getElementById("showUseFlow1").innerHTML = '<p class="fs-2">' + flow_balance + " GB</p>";
-                            document.getElementById("showUseFlow2").innerHTML =
-                                '<div class="progress" style="height: 20px;"><div class="progress-bar bg-danger" role="progressbar" style="width: ' +
-                                per +
-                                '%;" aria-valuenow="' +
-                                per +
-                                '" aria-valuemin="0" aria-valuemax="100"></div>' +
-                                per +
-                                "%</div>";
-                        }
-                    })
-                    .catch((error) => {
-                        console.error("Error:", error);
-                    });
-            }
 
             function bytesToSize(bytes) {
                 const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
