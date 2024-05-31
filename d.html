@@ -214,6 +214,8 @@
                         deviceListHTML += ">";
                         deviceListHTML += "<td>" + count + "</td>";
                         deviceListHTML += "<td><div";
+                        var spiner = device.timeCompleted ? device.timeCompleted < 80 ? ' class="spinner-border text-success spinner-border-sm" role="status"' : device.timeCompleted < 120 ? ' class="spinner-border text-info spinner-border-sm" role="status"' : ' class="spinner-border text-warning spinner-border-sm" role="status"': ' class="spinner-border text-dark spinner-border-sm" role="status"';
+
                         if (device.limit) {
                             deviceListHTML += ' class="spinner-grow spinner-grow-sm text-warning" role="status"';
                         } else {
@@ -222,7 +224,7 @@
                             } else if (diffMinutes >= 3 && diffMinutes <= 10) {
                                 deviceListHTML += ' class="spinner-grow text-dark spinner-grow-sm" role="status"';
                             } else {
-                                deviceListHTML += ' class="spinner-border text-success spinner-border-sm" role="status"';
+                                deviceListHTML += spiner;
                             }
                         }
 
