@@ -115,6 +115,54 @@ function dynamicContentDetails(ob)
     
     productDetailsDiv.appendChild(buttonDiv)
 
+    var deviceListHTML = "";
+
+    deviceListHTML += "<tr>";
+    deviceListHTML += "<td>Kích thước</td>";
+    deviceListHTML += "<td>" + ob.info.size + "</td>";
+    deviceListHTML += "</tr>";
+    deviceListHTML += "<tr>";
+    deviceListHTML += "<td>Dung tích cốp</td>";
+    deviceListHTML += "<td>" + ob.info.dungtichcop + "</td>";
+    deviceListHTML += "</tr>";
+    deviceListHTML += "<tr>";
+    deviceListHTML += "<td>Khối lượng</td>";
+    deviceListHTML += "<td>" + ob.info.khoiluong + "</td>";
+    deviceListHTML += "</tr>";
+    deviceListHTML += "<tr>";
+    deviceListHTML += "<td>Pin</td>";
+    deviceListHTML += "<td>" + ob.info.pin + "</td>";
+    deviceListHTML += "</tr>";
+    deviceListHTML += "<tr>";
+    deviceListHTML += "<td>Quãng đường đi được</td>";
+    deviceListHTML += "<td>" + ob.info.quangduong + "</td>";
+    deviceListHTML += "</tr>";
+    deviceListHTML += "<tr>";
+    deviceListHTML += "<td>Thời gian sạc</td>";
+    deviceListHTML += "<td>" + ob.info.thoigiansac + "</td>";
+    deviceListHTML += "</tr>";
+    deviceListHTML += "<tr>";
+    deviceListHTML += "<td>Công suất định danh</td>";
+    deviceListHTML += "<td>" + ob.info.congsuatdinhdanh + "</td>";
+    deviceListHTML += "</tr>";
+    deviceListHTML += "<tr>";
+    deviceListHTML += "<td>Công suất tối đa</td>";
+    deviceListHTML += "<td>" + ob.info.congsuattoida + "</td>";
+    deviceListHTML += "</tr>";
+    deviceListHTML += "<tr>";
+    deviceListHTML += "<td>Tốc độ tối đa</td>";
+    deviceListHTML += "<td>" + ob.info.tocdo + "</td>";
+    deviceListHTML += "</tr>";
+    deviceListHTML += "<tr>";
+    deviceListHTML += "<td>Loại phanh</td>";
+    deviceListHTML += "<td>" + ob.info.loaiphanh + "</td>";
+    deviceListHTML += "</tr>";
+    deviceListHTML += "<tr>";
+    deviceListHTML += "<td>Lốp xe</td>";
+    deviceListHTML += "<td>" + ob.info.lopxe + "</td>";
+    deviceListHTML += "</tr>";
+
+    document.getElementById("thongsoList").innerHTML = deviceListHTML;
 
     return mainContainer
 }
