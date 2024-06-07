@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad List</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+        select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ad List</h1>
+    <select id="adList"></select>
+    <button id="copyButton">Copy</button>
+
+    <script>
+        const adList = document.getElementById('adList');
+        const copyButton = document.getElementById('copyButton');
+
+        fetch('https://666079ab5425580055b4139f.mockapi.io/api/v1/ads')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = JSON.stringify(item.ads); // Store the ads array as the option value
+                    option.text = `Publisher: ${item.pub}`;
+                    adList.appendChild(option);
+                });
+            });
+
+        copyButton.addEventListener('click', () => {
+            const selectedOption = adList.selectedOptions[0].value;
+            navigator.clipboard.writeText(selectedOption)
+                .then(() => {
+                    alert('Ad list copied to clipboard!');
+                })
+                .catch(err => {
+                    console.error('Failed to copy ad list:', err);
+                    alert('Failed to copy ad list. Please try again.');
+                });
+        });
+    </script>
+</body>
+</html>
