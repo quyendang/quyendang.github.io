@@ -47,7 +47,7 @@
         .traffic {
             color: #555;
         }
-        .total-traffic {
+        .total-traffic, .average-traffic {
             text-align: right;
             font-weight: bold;
             padding: 12px;
@@ -71,6 +71,9 @@
                 <tr>
                     <td class="total-traffic" colspan="2" id="total-traffic">Total Traffic: 0 GB</td>
                 </tr>
+                <tr>
+                    <td class="average-traffic" colspan="2" id="average-traffic">Average Traffic per Day: 0 GB</td>
+                </tr>
             </tfoot>
         </table>
     </div>
@@ -79,22 +82,29 @@
             .then(response => response.json())
             .then(data => {
                 const dataTable = document.getElementById('data-table');
-            const totalTrafficElement = document.getElementById('total-traffic');
-            dataTable.innerHTML = '';
-            let totalTraffic = 0;
+                const totalTrafficElement = document.getElementById('total-traffic');
+                const averageTrafficElement = document.getElementById('average-traffic');
+                dataTable.innerHTML = '';
+                let totalTraffic = 0;
 
-            data.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${item.username}</td>
-                    <td class="traffic">${item.traffic}</td>
-                `;
-                dataTable.appendChild(row);
-                totalTraffic += item.traffic;
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.username}</td>
+                        <td class="traffic">${item.traffic}</td>
+                    `;
+                    dataTable.appendChild(row);
+                    totalTraffic += item.traffic;
+                });
+
+                totalTrafficElement.textContent = `Total Traffic: ${totalTraffic.toFixed(4)} GB`;
+
+                const startDate = new Date('2024-06-22');
+                const today = new Date();
+                const daysDifference = Math.floor((today - startDate) / (1000 * 60 * 60 * 24)) + 1; // Calculate number of days including start date
+                const averageTraffic = totalTraffic / daysDifference;
+                averageTrafficElement.textContent = `Average Traffic per Day: ${averageTraffic.toFixed(4)} GB`;
             });
-
-            totalTrafficElement.textContent = `Total Traffic: ${totalTraffic.toFixed(4)} GB`;
-        });
     </script>
 </body>
 </html>
