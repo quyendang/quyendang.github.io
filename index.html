@@ -1,142 +1,154 @@
 <!DOCTYPE html>
-<html dir="auto" lang="en">
+<html lang="vi">
 <head>
-	<meta charset="UTF-8" />
-	<title>Tết Filter - Sửa Ảnh 2024</title>
-	<meta name="keywords" content="Tết Filter - Sửa Ảnh 2024, Quyen Dang, Photo &amp; Video,Utilities, ios apps, app, appstore, app store, iphone, ipad, ipod touch, itouch, itunes">
-
-	<meta name="description" content="50+ Filters chỉnh màu ảnh đẹp" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="icon" href="https://raw.githubusercontent.com/quyendang/quyendang.github.io/864c518487fa2f18ad76eee4e700c74470092155/assets/favicon.png" />
-
-	<meta property="og:title" content="Tết Filter - Sửa Ảnh 2024" />
-	<meta property="og:description" content="50+ Filters chỉnh màu ảnh đẹp" />
-	<meta property="og:image" content="https://raw.githubusercontent.com/quyendang/quyendang.github.io/864c518487fa2f18ad76eee4e700c74470092155/assets/og-image.png" />
-	<meta name='impact-site-verification' value='ad61edfd-92de-47ae-83e8-a729ccc0ccc6'>
-	<link rel="stylesheet" href="https://raw.githubusercontent.com/quyendang/quyendang.github.io/864c518487fa2f18ad76eee4e700c74470092155/assets/tobi.css" />
-	<link rel="stylesheet" href="https://raw.githubusercontent.com/quyendang/quyendang.github.io/864c518487fa2f18ad76eee4e700c74470092155/assets/style.css" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Accounts</title>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .container { margin-top: 20px; }
+        .summary { font-size: 1.1rem; margin-bottom: 15px; }
+        .progress {
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background: linear-gradient(to right, #ff8000, #ff5900);
+            transition: width 0.5s;
+        }
+    </style>
 </head>
-	<body>
-		<main>
-<header class="app__header container">
-	<div class="app__logo-wrapper"> <img class="app__logo" src="https://github.com/quyendang/quyendang.github.io/blob/master/content/image/aabdwu18zvya3if5ph0a.png" alt="Tết Filter - Sửa Ảnh 2024"></div>
-	<div class="app__infos">
-		<h1 class="app__name">Tết Filter - Sửa Ảnh 2024</h1>
-		<p class="app__description">50+ Filters chỉnh màu ảnh đẹp</p>
-		<div class="app__buttons app__buttons--desktop">
-			<a href="https://apps.apple.com/us/app/t%E1%BA%BFt-filter-s%E1%BB%ADa-%E1%BA%A3nh-2024/id6474615556" class="app__button-play" target="_blank" title="Get on Google Play">
-				<img src="https://raw.githubusercontent.com/quyendang/quyendang.github.io/864c518487fa2f18ad76eee4e700c74470092155/assets/google-play-badge.png" alt="Get on Google Play">
-			</a>
-			<a href="https://apps.apple.com/us/app/t%E1%BA%BFt-filter-s%E1%BB%ADa-%E1%BA%A3nh-2024/id6474615556" class="app__button-ios" target="_blank" title="Get on Appstore">
-				<img src="https://raw.githubusercontent.com/quyendang/quyendang.github.io/864c518487fa2f18ad76eee4e700c74470092155/assets/ios-badge.svg" alt="Get on Appstore">
-			</a>
-			<a href="https://apps.apple.com/us/app/t%E1%BA%BFt-filter-s%E1%BB%ADa-%E1%BA%A3nh-2024/id6474615556" class="app__button-web" target="_blank" title="Go to website">
-				<img src="https://raw.githubusercontent.com/quyendang/quyendang.github.io/864c518487fa2f18ad76eee4e700c74470092155/assets/pwa-badge.png" alt="Go to website">
-			</a>
-		</div>
-	</div>
-</header>
-<div class="app__buttons app__buttons--mobile container">
-	<a href="https://apps.apple.com/us/app/t%E1%BA%BFt-filter-s%E1%BB%ADa-%E1%BA%A3nh-2024/id6474615556" class="app__button-play" target="_blank" title="Get on Google Play">
-		<img src="https://raw.githubusercontent.com/quyendang/quyendang.github.io/864c518487fa2f18ad76eee4e700c74470092155/assets/google-play-badge.png" alt="Get on Google Play">
-	</a>
-	<a href="https://apps.apple.com/us/app/t%E1%BA%BFt-filter-s%E1%BB%ADa-%E1%BA%A3nh-2024/id6474615556" class="app__button-ios" target="_blank" title="Get on Appstore">
-		<img src="https://raw.githubusercontent.com/quyendang/quyendang.github.io/864c518487fa2f18ad76eee4e700c74470092155/assets/ios-badge.svg" alt="Get on Appstore">
-	</a>
-	<a href="https://apps.apple.com/us/app/t%E1%BA%BFt-filter-s%E1%BB%ADa-%E1%BA%A3nh-2024/id6474615556" class="app__button-web" target="_blank" title="Go to website">
-		<img src="https://raw.githubusercontent.com/quyendang/quyendang.github.io/864c518487fa2f18ad76eee4e700c74470092155/assets/pwa-badge.png" alt="Go to website">
-	</a>
+<body>
+
+<div class="container">
+    <h2 class="text-center">Danh sách Accounts</h2>
+
+    <div class="summary">
+        <strong>Accounts:</strong> <span id="totalAccounts">0</span> |
+        <strong>Active Nodes:</strong> <span id="totalSentry">0 / 0</span> |
+        <strong>Points:</strong> <span id="totalBalance">0</span>
+    </div>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Email</th>
+                <th>Thời gian tạo</th>
+                <th>Hoạt động gần đây</th>
+                <th>Active Node</th>
+                <th>Point</th>
+            </tr>
+        </thead>
+        <tbody id="accountTable"></tbody>
+    </table>
 </div>
-<section class="app__screenshots app__section">
-	<div class="container">
-		<h2 class="app__section-title">Screenshots</h2>
-	</div>
-	<div class="app__screenshots-wrapper container-desktop">
-		<div class="app__screenshots-list">
-			<a href="https://github.com/quyendang/quyendang.github.io/blob/master/content/image/eyh3ods7ycsujxd0fotu.png" class="lightbox">
-				<img src="https://github.com/quyendang/quyendang.github.io/blob/master/content/image/eyh3ods7ycsujxd0fotu.png" class="app__screenshot" alt="" />
-			</a>
-			<a href="https://github.com/quyendang/quyendang.github.io/blob/master/content/image/dtrbujes2zxo531fu65o.png" class="lightbox">
-				<img src="https://github.com/quyendang/quyendang.github.io/blob/master/content/image/dtrbujes2zxo531fu65o.png" class="app__screenshot" alt="" />
-			</a>
-			<a href="https://github.com/quyendang/quyendang.github.io/blob/master/content/image/d3g6ey3slwgbrm375x2w.png" class="lightbox">
-				<img src="https://github.com/quyendang/quyendang.github.io/blob/master/content/image/d3g6ey3slwgbrm375x2w.png" class="app__screenshot" alt="" />
-			</a>
-			<a href="https://github.com/quyendang/quyendang.github.io/blob/master/content/image/64d2qi8jb5mjpcxj80q6.png" class="lightbox">
-				<img src="https://github.com/quyendang/quyendang.github.io/blob/master/content/image/64d2qi8jb5mjpcxj80q6.png" class="app__screenshot" alt="" />
-			</a>
-		</div>
-	</div>
-</section>
-<section class="app__fulldescription app__section container">
-	<h2 class="app__section-title">Description</h2>
-	<div class="app__fulldescription-content">
-		<p>Bạn đang tìm kiếm cách để làm cho ảnh Tết của mình trở nên đặc biệt?</p>
-<p>TẾT Filter mang đến cho bạn trải nghiệm chỉnh sửa ảnh Tết không giới hạn với hàng loạt tính năng độc đáo:</p>
-<ul>
-<li><p>Bộ Lọc Màu Sắc Tết: Áp dụng ngay lập tức các bộ lọc màu sắc phong phú, từ truyền thống đến hiện đại, để tôn vinh không khí ngày Tết.</p>
-</li>
-<li><p>Chỉnh Sửa Ảnh Nhanh Chóng: Công cụ chỉnh sửa mạnh mẽ giúp bạn cắt, chỉnh sáng, tương phản, và thêm văn bản với font chữ độc đáo.</p>
-</li>
-<li><p>Chia Sẻ Dễ Dàng: Chia sẻ ảnh Tết của bạn trực tiếp lên các mạng xã hội như Facebook, Instagram, Zalo.</p>
-</li>
-<li><p>Giao Diện Thân Thiện: Giao diện trực quan, dễ sử dụng cho cả người mới bắt đầu và chuyên gia chỉnh sửa ảnh.</p>
-</li>
-</ul>
-<p>TẾT Filter là người bạn đồng hành lý tưởng trong mỗi dịp Tết đến, Xuân về. Hãy tải ứng dụng ngay hôm nay để tạo nên những kỷ niệm Tết không thể quên!</p>
-<p>Tính năng NÂNG CẤP PRO</p>
-<p>Khi bạn đăng ký gói NÂNG CẤP PRO, bạn sẽ được hưởng những đặc quyền sau:</p>
-<ul>
-<li><p>Không hiện quảng cáo 100%</p>
-</li>
-<li><p>Sử dụng những filter PRO</p>
-</li>
-<li><p>Truy cập sớm vào kho filter được cập nhật mới nhất trong tương lai</p>
-</li>
-</ul>
-<p>Hiện tại chúng tôi đang cung cấp những gói dịch vụ với các thời hạn: 1 Tháng (0.99 US$), 6 Tháng (0.99 US$), 1 Năm (9.99 US$)</p>
-<p>PRIVACY POLICY: <a href="https://edit.codes/tetfilter-privacy.html">https://edit.codes/tetfilter-privacy.html</a></p>
-<p>TERMS AND CONDITIONS: <a href="https://edit.codes/tetfilter-eula.html">https://edit.codes/tetfilter-eula.html</a></p>
 
-	</div>
-</section>
-<section class="app__featured app__section container">
-	<h2 class="app__section-title">Featured in</h2>
-	<div class="app__featured-content">
-		<a href="https://www.producthunt.com/posts/t-t-filter-s-a-nh-2024" target="_blank" class="app__featured-company"> 
-			<img src="https://raw.githubusercontent.com/quyendang/quyendang.github.io/864c518487fa2f18ad76eee4e700c74470092155/assets/producthunt.png" class="app__featured-image">
-		</a> 
-		<a href="https://www.producthunt.com/posts/t-t-filter-s-a-nh-2024" target="_blank" class="app__featured-company"> 
-			<img src="https://raw.githubusercontent.com/quyendang/quyendang.github.io/864c518487fa2f18ad76eee4e700c74470092155/assets/producthunt.png" class="app__featured-image">
-		</a> 
-	</div>
-</section>
-		</main>
-		<footer class="footer">
-			<div class="container">
-				<div class="footer__container">
-					<p class="footer__love">
-						<script>document.write('&copy;' + (new Date()).getFullYear());</script><noscript>&copy;2024</noscript> @quyendang
-					</p>
-					<ul class="footer__links">
-							<li class="footer__link">
-								<a href="https://edit.codes/tetfilter-privacy.html">Privacy</a>
-							</li>
-							<li class="footer__link">
-								<a href="https://edit.codes/tetfilter-eula.html" targe="_blank">TERMS AND CONDITIONS</a>
-							</li>
-					</ul>
-				</div>
-			</div>
-		</footer>
+<script>
+    // Cấu hình Firebase
+    var firebaseConfig = {
+                apiKey: "AIzaSyCVE4U4wQvglPuKRi06ezTzwf3xagx8uUs",
+                authDomain: "nscmusic.asia",
+                databaseURL: "https://musik-9b557-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "musik-9b557",
+            };
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
 
-		<script type="text/javascript" src="https://raw.githubusercontent.com/quyendang/quyendang.github.io/864c518487fa2f18ad76eee4e700c74470092155/assets/tobi.min.js" /></script>
-		<script>
-			window.onload = function () {
-				var tobi = new Tobi();
-			};
-		</script>
+    function loadAccounts() {
+        database.ref("gradientAccounts").once("value", function(snapshot) {
+            let data = snapshot.val();
+            let accounts = [];
+            let index = 1;
+            let totalSentryActive = 0;
+            let totalSentry = 0;
+            let totalBalance = 0;
 
-  </body>
+            for (let userId in data) {
+                let user = data[userId];
+                let sentryActive = user.node?.sentryActive || 0;
+                let sentry = user.node?.sentry || 0;
+                let balance = user.point?.balance || 0;
+
+                accounts.push({
+                    index: index++,
+                    email: user.email || "N/A",
+                    createAt: user.createAt || 0,
+                    lastTime: (user.lastTime || 0) * 1000, // Nhân 1000 để đúng thời gian
+                    sentryActive: sentryActive,
+                    sentry: sentry,
+                    balance: balance
+                });
+
+                totalSentryActive += sentryActive;
+                totalSentry += sentry;
+                totalBalance += balance;
+            }
+
+            displayAccounts(accounts);
+            document.getElementById("totalAccounts").textContent = accounts.length;
+            document.getElementById("totalSentry").textContent = `${totalSentryActive} / ${totalSentry}`;
+            document.getElementById("totalBalance").textContent = formatBalance(totalBalance);
+        });
+    }
+
+    function displayAccounts(accounts) {
+        const accountTable = document.getElementById("accountTable");
+        accountTable.innerHTML = "";
+
+        accounts.forEach(account => {
+            let progress = account.sentry > 0 ? (account.sentryActive / account.sentry) * 100 : 0;
+
+            let row = `
+                <tr>
+                    <td>${account.index}</td>
+                    <td>${account.email}</td>
+                    <td>${timeAgo(account.createAt)}</td>
+                    <td>${timeAgo(account.lastTime)}</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: ${progress}%">
+                                ${account.sentryActive} / ${account.sentry}
+                            </div>
+                        </div>
+                    </td>
+                    <td>${formatBalance(account.balance)}</td>
+                </tr>
+            `;
+            accountTable.innerHTML += row;
+        });
+    }
+
+    function timeAgo(timestamp) {
+        if (!timestamp) return "Không có dữ liệu";
+        
+        let now = new Date();
+        let time = new Date(timestamp);
+
+        let diff = Math.floor((now - time) / 1000); // Đổi sang giây
+
+        if (diff < 60) return `${diff} giây trước`;
+        if (diff < 3600) return `${Math.floor(diff / 60)} phút trước`;
+        if (diff < 86400) return `${Math.floor(diff / 3600)} giờ trước`;
+        if (diff < 2592000) return `${Math.floor(diff / 86400)} ngày trước`;
+        if (diff < 31536000) return `${Math.floor(diff / 2592000)} tháng trước`;
+        return `${Math.floor(diff / 31536000)} năm trước`;
+    }
+
+    function formatBalance(balance) {
+        balance = balance / 100000
+        if (balance >= 1e9) return (balance / 1e9).toFixed(2) + "B"; // Tỷ (Billion)
+        if (balance >= 1e6) return (balance / 1e6).toFixed(2) + "M"; // Triệu (Million)
+        if (balance >= 1e3) return (balance / 1e3).toFixed(2) + "K"; // Nghìn (Kilo)
+        return balance.toString();
+    }
+
+    loadAccounts();
+</script>
+
+</body>
 </html>
