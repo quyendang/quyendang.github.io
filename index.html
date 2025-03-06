@@ -32,7 +32,8 @@
                 <th>Thời gian tạo</th>
                 <th>Hoạt động gần đây</th>
                 <th>Active Node</th>
-                <th>Point +today</th>
+                <th>Point</th>
+                <th>Today</th>
             </tr>
         </thead>
         <tbody id="accountTable"></tbody>
@@ -107,9 +108,8 @@
 
                         </div>
                     </td>
-                    <td>
-                        <button type="button" class="btn btn-dark">${formatBalance(account.balance)} <span class="badge text-bg-secondary">+${formatBalance(account.today)}</span></button>
-                    </td>
+                    <td>${formatBalance(account.balance)}</td>
+                    <td>+${formatBalance(account.today)}</td>
                 </tr>
             `;
             accountTable.innerHTML += row;
