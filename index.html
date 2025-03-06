@@ -150,14 +150,14 @@
     }
 
     function updateStatus(timestamp) {
-        if (!timestamp) return "gray";
+        if (!timestamp) return "#BDBDBD";
         
         let now = new Date();
         let time = new Date(timestamp);
 
         let diff = Math.floor((now - time) / 1000);
-        if (diff < 108000) return "#00ff99";
-        return "#ff9900"
+        if (diff < 108000) return "#4CAF50";
+        return "#F57C00"
     }
 
     loadAccounts();
