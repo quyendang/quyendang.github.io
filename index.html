@@ -32,7 +32,7 @@
                 <th>Thời gian tạo</th>
                 <th>Hoạt động gần đây</th>
                 <th>Active Node</th>
-                <th>Point</th>
+                <th>Point +today</th>
             </tr>
         </thead>
         <tbody id="accountTable"></tbody>
@@ -64,7 +64,7 @@
                 let sentryActive = user.node?.sentryActive || 0;
                 let sentry = user.node?.sentry || 0;
                 let balance = user.point?.balance || 0;
-
+                let today = user.point?.today || 0;
                 accounts.push({
                     index: index++,
                     email: user.email || "N/A",
@@ -72,7 +72,8 @@
                     lastTime: (user.lastTime || 0) * 1000, // Nhân 1000 để đúng thời gian
                     sentryActive: sentryActive,
                     sentry: sentry,
-                    balance: balance
+                    balance: balance,
+                    today: today
                 });
 
                 totalSentryActive += sentryActive;
@@ -106,7 +107,9 @@
 
                         </div>
                     </td>
-                    <td>${formatBalance(account.balance)}</td>
+                    <td>
+                        <button type="button" class="btn btn-dark">${formatBalance(account.balance)} <span class="badge text-bg-secondary">+${formatBalance(account.today)}</span></button>
+                    </td>
                 </tr>
             `;
             accountTable.innerHTML += row;
