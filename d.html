@@ -13,6 +13,13 @@
         .old-device { background-color: #ffcccc !important; } /* Màu đỏ cho thiết bị cũ */
         .btn-delete { background-color: red; color: white; border: none; padding: 5px 10px; }
         .btn-delete:hover { background-color: darkred; }
+        .status-circle {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+          }
     </style>
 </head>
 <body>
@@ -21,13 +28,14 @@
     <h2 class="text-center">Danh sách Devices</h2>
 
     <table class="table table-striped">
-        <thead class="table-dark">
+        <thead>
             <tr>
                 <th>#</th>
                 <th>IP</th>
+                <th>Power</th>
                 <th>Pub</th>
-                <th>Last Update Time</th>
-                <th>Hành động</th>
+                <th>Update Time</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody id="deviceTable"></tbody>
@@ -63,7 +71,8 @@
                     ip: device.ip || "N/A",
                     pub: device.pub || "N/A",
                     lastUpdateTime: lastUpdateTime,
-                    isOld: isOld
+                    isOld: isOld,
+                    ram: device.ram + 2147483648
                 });
             }
 
@@ -79,13 +88,20 @@
         deviceTable.innerHTML = "";
 
         devices.forEach((device, i) => {
+            let progress = device.ram > 0 ? (device.ram / 8589934592) * 100 : 0;
             let row = `
                 <tr class="${device.isOld ? 'old-device' : ''}">
                     <td>${i + 1}</td>
-                    <td>${device.ip}</td>
+                    <td><span class="status-circle" style="background-color: ${updateStatus(device.lastUpdateTime)};"></span>${device.ip}</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${progress}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">${bytesToGB(device.ram)} / 8</div>
+
+                        </div>
+                    </td>
                     <td>${device.pub}</td>
                     <td>${timeAgo(device.lastUpdateTime)}</td>
-                    <td><button class="btn-delete" onclick="deleteDevice('${device.key}')">Delete</button></td>
+                    <td><button type="button" onclick="deleteDevice('${device.key}')" class="btn btn-danger">Delete</button></td>
                 </tr>
             `;
             deviceTable.innerHTML += row;
@@ -121,6 +137,22 @@
         return `${Math.floor(diff / 31536000)} năm trước`;
     }
 
+    function updateStatus(timestamp) {
+        if (!timestamp) return "#BDBDBD";
+        
+        let now = new Date();
+        let time = new Date(timestamp);
+
+        let diff = Math.floor((now - time) / 1000);
+        if (diff < 108000) return "#4CAF50";
+        return "#F57C00"
+    }
+    function bytesToGB(bytes) {
+        const GB = 1073741824; // 1 GB = 1024^3 bytes
+        return (bytes / GB).toFixed(2); // Returns result rounded to 2 decimal places
+    }
+
+    
     loadDevices();
 </script>
 
