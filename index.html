@@ -11,6 +11,13 @@
         body { background-color: #f8f9fa; }
         .container { margin-top: 20px; }
         .summary { font-size: 1.1rem; margin-bottom: 15px; }
+        .status-circle {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+          }
     </style>
 </head>
 <body>
@@ -101,7 +108,9 @@
                     <td>${account.index}</td>
                     <td>${account.email}</td>
                     <td>${timeAgo(account.createAt)}</td>
-                    <td>${timeAgo(account.lastTime)}</td>
+                    <td>
+                    <span class="status-circle" style="background-color: ${updateStatus(account.lastTime)};"></span>
+                    ${timeAgo(account.lastTime)}</td>
                     <td>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: ${progress}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">${account.sentryActive} / ${account.sentry}</div>
@@ -138,6 +147,17 @@
         if (balance >= 1e6) return (balance / 1e6).toFixed(2) + "M"; // Triệu (Million)
         if (balance >= 1e3) return (balance / 1e3).toFixed(2) + "K"; // Nghìn (Kilo)
         return balance.toString();
+    }
+
+    function updateStatus(timestamp) {
+        if (!timestamp) return "gray";
+        
+        let now = new Date();
+        let time = new Date(timestamp);
+
+        let diff = Math.floor((now - time) / 1000);
+        if (diff < 108000) return "#00ff99";
+        return "#ff9900"
     }
 
     loadAccounts();
