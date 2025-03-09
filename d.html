@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -144,8 +145,8 @@
         let time = new Date(timestamp);
 
         let diff = Math.floor((now - time) / 1000);
-        if (diff < 108000) return "#4CAF50";
-        return "#F57C00"
+        if (diff < 1800) return "#4CAF50";
+        return "#F33A6A"
     }
     function bytesToGB(bytes) {
         const GB = 1073741824; // 1 GB = 1024^3 bytes
