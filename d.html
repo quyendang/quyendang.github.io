@@ -1,161 +1,166 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách Devices</title>
-    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <style>
-        body { background-color: #f8f9fa; }
-        .container { margin-top: 20px; }
-        .old-device { background-color: #ffcccc !important; } /* Màu đỏ cho thiết bị cũ */
-        .btn-delete { background-color: red; color: white; border: none; padding: 5px 10px; }
-        .btn-delete:hover { background-color: darkred; }
-        .status-circle {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 5px;
-          }
+        body {
+            background-color: #f8f9fa; /* Xám nhạt cho nền */
+            color: #212529; /* Xám đậm cho chữ */
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .card {
+            background-color: #ffffff; /* Trắng cho thẻ */
+            color: #212529; /* Xám đậm cho chữ trong thẻ */
+            border: 1px solid #e0e0e0; /* Viền mỏng */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Bóng nhẹ */
+        }
+        .old-device {
+            background-color: #f5c6cb !important; /* Hồng nhạt cho thiết bị cũ */
+        }
+        .card:hover {
+            transform: scale(1.01); /* Phóng to nhẹ khi hover */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Bóng đậm hơn */
+            transition: all 0.2s; /* Hiệu ứng mượt mà */
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h2 class="text-center">Danh sách Devices</h2>
+        <button class="btn btn-primary mb-3" style="background-color: #0d6efd; border-color: #0d6efd;" onclick="loadDevices()">Làm mới</button>
+        <div id="deviceContainer" class="row"></div>
+    </div>
 
-<div class="container">
-    <h2 class="text-center">Danh sách Devices</h2>
+    <!-- Modal xác nhận xóa -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc muốn xóa thiết bị này?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Xóa</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>IP</th>
-                <th>Power</th>
-                <th>Pub</th>
-                <th>Update Time</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="deviceTable"></tbody>
-    </table>
-</div>
+    <!-- Firebase và Bootstrap JS -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Cấu hình Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyCVE4U4wQvglPuKRi06ezTzwf3xagx8uUs",
+            authDomain: "nscmusic.asia",
+            databaseURL: "https://musik-9b557-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "musik-9b557",
+        };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
 
-<script>
-    // Cấu hình Firebase
-    var firebaseConfig = {
-                apiKey: "AIzaSyCVE4U4wQvglPuKRi06ezTzwf3xagx8uUs",
-                authDomain: "nscmusic.asia",
-                databaseURL: "https://musik-9b557-default-rtdb.asia-southeast1.firebasedatabase.app",
-                projectId: "musik-9b557",
-            };
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
+        // Khởi tạo modal
+        const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        let deviceToDelete;
 
-    function loadDevices() {
-        database.ref("devices").once("value", function(snapshot) {
-            let data = snapshot.val();
-            let devices = [];
-            let index = 1;
-            let now = Date.now();
+        function loadDevices() {
+            document.getElementById('deviceContainer').innerHTML = '<div class="text-center"><div class="spinner-border" role="status"><span class="visually-hidden">Đang tải...</span></div></div>';
+            database.ref("devices").once("value", function(snapshot) {
+                let data = snapshot.val();
+                let devices = [];
+                let now = Date.now();
 
-            for (let key in data) {
-                let device = data[key];
-                let lastUpdateTime = device.lastUpdateTime || 0;
-                let isOld = (now - lastUpdateTime) > 600000; // 10 phút (600,000 ms)
+                for (let key in data) {
+                    let device = data[key];
+                    let lastUpdateTime = device.lastUpdateTime || 0;
+                    let isOld = (now - lastUpdateTime) > 600000; // 10 phút
+                    devices.push({
+                        key: key,
+                        ip: device.ip || "N/A",
+                        pub: device.pub || "N/A",
+                        lastUpdateTime: lastUpdateTime,
+                        isOld: isOld
+                    });
+                }
+                devices.sort((a, b) => a.pub.localeCompare(b.pub));
+                displayDevices(devices);
+            }).catch(error => {
+                console.error("Lỗi khi tải dữ liệu:", error);
+                document.getElementById('deviceContainer').innerHTML = '<p class="text-danger">Có lỗi xảy ra khi tải dữ liệu.</p>';
+            });
+        }
 
-                devices.push({
-                    key: key,
-                    index: index++,
-                    ip: device.ip || "N/A",
-                    pub: device.pub || "N/A",
-                    lastUpdateTime: lastUpdateTime,
-                    isOld: isOld,
-                    ram: device.ram + 2147483648
-                });
-            }
-
-            // Sắp xếp theo pub (tăng dần A → Z)
-            devices.sort((a, b) => a.pub.localeCompare(b.pub));
-
-            displayDevices(devices);
-        });
-    }
-
-    function displayDevices(devices) {
-        const deviceTable = document.getElementById("deviceTable");
-        deviceTable.innerHTML = "";
-
-        devices.forEach((device, i) => {
-            let progress = device.ram > 0 ? (device.ram / 8589934592) * 100 : 0;
-            let row = `
-                <tr class="${device.isOld ? 'old-device' : ''}">
-                    <td>${i + 1}</td>
-                    <td><span class="status-circle" style="background-color: ${updateStatus(device.lastUpdateTime)};"></span>${device.ip}</td>
-                    <td>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${progress}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">${bytesToGB(device.ram)} / 8</div>
-
+        function displayDevices(devices) {
+            const deviceContainer = document.getElementById('deviceContainer');
+            deviceContainer.innerHTML = '';
+            devices.forEach(device => {
+                let card = `
+                    <div class="col-md-4" id="device-${device.key}">
+                        <div class="card mb-3 ${device.isOld ? 'old-device' : ''}">
+                            <div class="card-body">
+                                <h5 class="card-title">IP: ${device.ip}</h5>
+                                <p class="card-text">Pub: ${device.pub}</p>
+                                <p class="card-text">Thời gian cập nhật: ${timeAgo(device.lastUpdateTime)}</p>
+                                <button class="btn btn-danger btn-sm" onclick="deleteDevice('${device.key}')" title="Xóa thiết bị">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
                         </div>
-                    </td>
-                    <td>${device.pub}</td>
-                    <td>${timeAgo(device.lastUpdateTime)}</td>
-                    <td><button type="button" onclick="deleteDevice('${device.key}')" class="btn btn-danger">Delete</button></td>
-                </tr>
-            `;
-            deviceTable.innerHTML += row;
-        });
-    }
+                    </div>
+                `;
+                deviceContainer.innerHTML += card;
+            });
+        }
 
-    function deleteDevice(deviceKey) {
-        if (confirm("Bạn có chắc muốn xóa thiết bị này?")) {
-            database.ref(`devices/${deviceKey}`).remove()
+        function deleteDevice(deviceKey) {
+            deviceToDelete = deviceKey;
+            deleteModal.show();
+        }
+
+        document.getElementById('confirmDelete').addEventListener('click', function() {
+            database.ref(`devices/${deviceToDelete}`).remove()
                 .then(() => {
-                    alert("Xóa thành công!");
-                    loadDevices(); // Cập nhật lại danh sách
+                    let card = document.getElementById(`device-${deviceToDelete}`);
+                    card.style.transition = 'opacity 0.5s';
+                    card.style.opacity = 0;
+                    setTimeout(() => {
+                        card.remove();
+                    }, 500);
+                    deleteModal.hide();
                 })
                 .catch(error => {
                     console.error("Lỗi khi xóa:", error);
                 });
+        });
+
+        function timeAgo(timestamp) {
+            if (!timestamp) return "Không có dữ liệu";
+            let now = new Date();
+            let time = new Date(timestamp);
+            let diff = Math.floor((now - time) / 1000);
+            if (diff < 60) return `${diff} giây trước`;
+            if (diff < 3600) return `${Math.floor(diff / 60)} phút trước`;
+            if (diff < 86400) return `${Math.floor(diff / 3600)} giờ trước`;
+            if (diff < 2592000) return `${Math.floor(diff / 86400)} ngày trước`;
+            if (diff < 31536000) return `${Math.floor(diff / 2592000)} tháng trước`;
+            return `${Math.floor(diff / 31536000)} năm trước`;
         }
-    }
 
-    function timeAgo(timestamp) {
-        if (!timestamp) return "Không có dữ liệu";
-        
-        let now = new Date();
-        let time = new Date(timestamp);
-
-        let diff = Math.floor((now - time) / 1000); // Đổi sang giây
-
-        if (diff < 60) return `${diff} giây trước`;
-        if (diff < 3600) return `${Math.floor(diff / 60)} phút trước`;
-        if (diff < 86400) return `${Math.floor(diff / 3600)} giờ trước`;
-        if (diff < 2592000) return `${Math.floor(diff / 86400)} ngày trước`;
-        if (diff < 31536000) return `${Math.floor(diff / 2592000)} tháng trước`;
-        return `${Math.floor(diff / 31536000)} năm trước`;
-    }
-
-    function updateStatus(timestamp) {
-        if (!timestamp) return "#BDBDBD";
-        
-        let now = new Date();
-        let time = new Date(timestamp);
-
-        let diff = Math.floor((now - time) / 1000);
-        if (diff < 1800) return "#4CAF50";
-        return "#F33A6A"
-    }
-    function bytesToGB(bytes) {
-        const GB = 1073741824; // 1 GB = 1024^3 bytes
-        return (bytes / GB).toFixed(2); // Returns result rounded to 2 decimal places
-    }
-
-    
-    loadDevices();
-</script>
-
+        loadDevices();
+    </script>
 </body>
 </html>
