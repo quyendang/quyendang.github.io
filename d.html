@@ -70,6 +70,30 @@
             border-radius: 50%;
             margin-right: 5px;
         }
+        .bg-pink {
+            background-color: #ff69b4 !important;
+        }
+        .bg-orange {
+            background-color: #ff8c00 !important;
+        }
+        .btn-custom-connect {
+            background-color: rgba(29, 188, 96, 0.5);
+            border: none; /* Loại bỏ viền */
+            padding: 2px 5px; /* Giảm padding để nút nhỏ hơn */
+        }
+        .btn-custom-connect img {
+            width: 16px; /* Kích thước biểu tượng */
+            height: 16px;
+        }
+        .btn-custom-delete {
+            background-color: rgba(248, 40, 48, 0.5);
+            border: none; /* Loại bỏ viền */
+            padding: 2px 5px; /* Giảm padding để nút nhỏ hơn */
+        }
+        .btn-custom-delete img {
+            width: 16px; /* Kích thước biểu tượng */
+            height: 16px;
+        }
     </style>
 </head>
 <body>
@@ -85,6 +109,7 @@
             <tr>
                 <th>#</th>
                 <th>IP</th>
+                <th>Kết nối</th>
                 <th>Pub</th>
                 <th>Cập nhật</th>
                 <th>Hành động</th>
@@ -188,12 +213,21 @@ password 51:b:${password}
                     isOld: isOld
                 });
 
-                if ((now - lastUpdateTime) / 1000 < 1800) {
+                if ((now - lastUpdateTime) < 1800000) { // 30 phút
                     activeDevices++;
                 }
             }
 
-            devices.sort((a, b) => a.pub.localeCompare(b.pub));
+            // Sắp xếp: các thiết bị cũ hơn 30 phút lên trên
+            devices.sort((a, b) => {
+                const now = Date.now();
+                const aIsOld = (now - a.lastUpdateTime) > 1800000;
+                const bIsOld = (now - b.lastUpdateTime) > 1800000;
+                if (aIsOld && !bIsOld) return -1;
+                if (!aIsOld && bIsOld) return 1;
+                return a.pub.localeCompare(b.pub);
+            });
+
             displayDevices(devices, activeDevices);
         });
     }
@@ -209,11 +243,18 @@ password 51:b:${password}
                     <td>
                         <span class="status-circle" style="background-color: ${updateStatus(device.lastUpdateTime)};"></span>
                         ${device.ip}
-                        <button type="button" onclick="createRDPFile('${device.ip}')" class="btn btn-sm btn-outline-primary ms-2">Kết nối</button>
                     </td>
-                    <td>${device.pub}</td>
+                    <td>
+                        <button type="button" onclick="createRDPFile('${device.ip}')" class="btn btn-custom-connect">
+                            <img src="link.png" alt="Kết nối">
+                        </button>
+                    </td>
+                    <td>${formatPub(device.pub)}</td>
                     <td>${timeAgo(device.lastUpdateTime)}</td>
-                    <td><button type="button" onclick="deleteDevice('${device.key}')" class="btn-delete">Xóa</button></td>
+                    <td><button type="button" onclick="deleteDevice('${device.key}')" class="btn btn-custom-delete">
+                            <img src="delete.png" alt="Delete">
+                        </button>
+                    </td>
                 </tr>
             `;
             deviceTable.innerHTML += row;
@@ -222,11 +263,33 @@ password 51:b:${password}
         document.getElementById("deviceStats").textContent = `${activeDevices} / ${devices.length}`;
     }
 
+    function formatPub(pub) {
+        if (!pub || pub === "N/A") return "N/A";
+        const parts = pub.split("-");
+        const basePub = parts[0];
+        const typeTag = parts[1] ? parts[1].toUpperCase() : "";
+
+        if (!typeTag) return basePub;
+
+        let tagText = typeTag;
+        let tagClass = "";
+
+        if (["A", "ASIA"].includes(typeTag)) {
+            tagText = "ASIA";
+            tagClass = "bg-warning text-dark"; // Thẻ màu vàng
+        } else if (["PRO"].includes(typeTag)) {
+            tagClass = "bg-pink text-white"; // Thẻ màu hồng
+        } else {
+            tagClass = "bg-orange text-dark"; // Thẻ màu cam
+        }
+
+        return `${basePub} <span class="badge ${tagClass}">${tagText}</span>`;
+    }
+
     function deleteDevice(deviceKey) {
         if (confirm("Bạn có chắc muốn xóa thiết bị này?")) {
             database.ref(`devices/${deviceKey}`).remove()
                 .then(() => {
-                    alert("Xóa thành công!");
                     loadDevices();
                 })
                 .catch(error => {
