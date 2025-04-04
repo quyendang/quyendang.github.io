@@ -94,6 +94,38 @@
             width: 16px; /* Kích thước biểu tượng */
             height: 16px;
         }
+        .account-section {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .account-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #444;
+        }
+        .account-list {
+            list-style: none;
+            padding: 0;
+        }
+        .account-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+        .account-list li:last-child {
+            border-bottom: none;
+        }
+        .account-name {
+            font-weight: 500;
+        }
+        .expiry-date {
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -102,6 +134,16 @@
     <h2>Danh sách Devices</h2>
     <div class="summary">
         <strong>Thiết bị hoạt động:</strong> <span id="deviceStats">0 / 0</span>
+    </div>
+
+    <div class="account-section">
+        <h3>Thông tin tài khoản</h3>
+        <ul class="account-list">
+            <li><span class="account-name">lannguyen</span><span class="expiry-date">Hết hạn: 24/04/2025</span></li>
+            <li><span class="account-name">wuyendl</span><span class="expiry-date">Hết hạn: 03/07/2025</span></li>
+            <li><span class="account-name">siunhanpepe</span><span class="expiry-date">Hết hạn: 01/06/2025</span></li>
+            <li><span class="account-name">quyendang</span><span class="expiry-date">Hết hạn: 04/07/2025</span></li>
+        </ul>
     </div>
 
     <table class="table">
