@@ -1,0 +1,17 @@
+{
+  "name": "appstore-landing-generator",
+  "version": "1.0.0",
+  "description": "Auto-generate landing pages, privacy policies & support pages from your Apple App Store developer account",
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.js",
+    "dev": "node src/build.js && npx serve dist -p 3000",
+    "fetch": "node src/fetch-apps.js"
+  },
+  "keywords": ["appstore", "landing-page", "privacy-policy", "ios"],
+  "author": "Quyen Dang",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
