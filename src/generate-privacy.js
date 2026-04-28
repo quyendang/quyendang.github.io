@@ -109,7 +109,7 @@ export function generatePrivacyPolicy(app) {
       },
       {
         heading: 'Children\'s Privacy',
-        body: `${app.name} does not knowingly collect any personal information from children under the age of 13. The App's content rating on the App Store is ${app.contentRating}. If you believe a child has provided us with personal information, please contact us and we will delete such information immediately.`
+        body: `${app.name} does not knowingly collect any personal information from children under the age of 13. The App's content rating on the App Store is ${app.contentRating || '4+'}. If you believe a child has provided us with personal information, please contact us and we will delete such information immediately.`
       },
       {
         heading: 'Your Rights (GDPR & CCPA)',

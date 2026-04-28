@@ -248,10 +248,14 @@ ${buildHeader()}
 
 <main>
   <section class="container legal-hero">
-    ${app ? `
+    ${app && !app.isPending ? `
       <a href="/apps/${app.slug}/" class="back-to-app">
         <img src="${app.icon}" alt="">
         <span>← Back to ${escapeHtml(app.name)}</span>
+      </a>
+    ` : app ? `
+      <a href="/" class="back-to-app">
+        <span>← Back to Home</span>
       </a>
     ` : ''}
     <div class="legal-eyebrow">Privacy Policy</div>
@@ -307,10 +311,14 @@ ${buildHeader()}
 
 <main>
   <section class="container legal-hero">
-    ${app ? `
+    ${app && !app.isPending ? `
       <a href="/apps/${app.slug}/" class="back-to-app">
         <img src="${app.icon}" alt="">
         <span>← Back to ${escapeHtml(app.name)}</span>
+      </a>
+    ` : app ? `
+      <a href="/" class="back-to-app">
+        <span>← Back to Home</span>
       </a>
     ` : ''}
     <div class="legal-eyebrow">Support Center</div>

@@ -50,6 +50,17 @@ export const config = {
     },
   },
 
+  // ============ APPS CHƯA LÊN STORE ============
+  // Thêm URL App Store vào đây để tạo privacy & support page tạm thời
+  // trước khi app được Apple duyệt và dữ liệu có thể fetch từ iTunes API
+  pendingApps: [
+    // Thêm app chưa được duyệt vào đây. Chỉ cần URL từ App Store Connect.
+    // {
+    //   appStoreUrl: 'https://apps.apple.com/us/app/fastremind-nh%E1%BA%AFc-tr%E1%BA%A3-n%E1%BB%A3/id6762947777',
+    //   name: 'FastRemind Nhắc Trả Nợ', // Tùy chọn: ghi đè tên tự trích xuất từ URL
+    // },
+  ],
+
   // ============ DEPLOYMENT ============
   deployment: {
     baseUrl: 'https://quyendang.dev',    // ⚠️ Đổi thành domain thật
