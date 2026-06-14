@@ -1,9 +1,9 @@
 name: Build & Deploy
 
 on:
-  # Chạy mỗi khi push lên main
+  # Chạy mỗi khi push lên master
   push:
-    branches: [main]
+    branches: [master]
   
   # Cho phép trigger thủ công từ GitHub UI
   workflow_dispatch:

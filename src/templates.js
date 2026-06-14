@@ -10,12 +10,20 @@ export const baseCss = `
 :root {
   --bg: ${brand.bgColor};
   --ink: ${brand.textColor};
-  --ink-soft: #555;
-  --ink-faint: #8a8a85;
+  --ink-soft: #4A4A47;
+  --ink-faint: #6E6E6A;
   --accent: ${brand.accentColor};
+  --accent-dim: rgba(255,90,31,0.10);
   --paper: #ffffff;
-  --line: #1a1a1a;
-  --line-soft: rgba(26,26,26,0.12);
+  --line: ${brand.textColor};
+  --line-soft: rgba(15,15,13,0.10);
+  --line-faint: rgba(15,15,13,0.06);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 100px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -65,19 +73,25 @@ a { color: inherit; text-decoration: none; }
 
 /* ============ HEADER ============ */
 .site-header {
-  border-bottom: 1px solid var(--line);
-  background: var(--bg);
+  border-bottom: 1px solid var(--line-soft);
+  background: rgba(250,250,247,0.88);
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: box-shadow 0.3s;
+}
+
+.site-header.scrolled {
+  box-shadow: var(--shadow-sm);
 }
 
 .site-header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 18px 0;
 }
 
 .brand {
@@ -119,7 +133,7 @@ a { color: inherit; text-decoration: none; }
   position: relative;
 }
 
-.nav a:hover { color: var(--accent); }
+.nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 
 @media (max-width: 640px) {
   .nav { display: none; }
@@ -127,7 +141,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ============ FOOTER ============ */
 .site-footer {
-  border-top: 1px solid var(--line);
+  border-top: 2px solid var(--line);
   margin-top: 120px;
   padding: 60px 0 40px;
   font-size: 13px;
@@ -150,7 +164,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   font-weight: 600;
 }
 
@@ -161,7 +175,7 @@ a { color: inherit; text-decoration: none; }
   transition: color 0.2s;
 }
 
-.footer-col a:hover { color: var(--accent); }
+.footer-col a:hover { color: var(--ink); }
 
 .footer-bottom {
   display: flex;
@@ -191,6 +205,43 @@ a { color: inherit; text-decoration: none; }
 
 .rise { animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
 .fade { animation: fadeIn 1s ease-out backwards; }
+
+/* ============ LINK ANIMATED ============ */
+.link-animated {
+  position: relative;
+}
+.link-animated::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.25s ease;
+}
+.link-animated:hover::after { width: 100%; }
+
+/* ============ FOCUS ============ */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============ SMALL MOBILE ============ */
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+}
 `;
 
 /**
@@ -219,7 +270,7 @@ ${image ? `<meta name="twitter:image" content="${image}">` : ''}
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <!-- Favicon -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${encodeURIComponent(brand.logo)}</text></svg>">
@@ -246,7 +297,8 @@ export function buildHeader(currentPath = '/') {
       <a href="mailto:${developer.email}">Contact</a>
     </nav>
   </div>
-</header>`;
+</header>
+<script>window.addEventListener('scroll',()=>{document.querySelector('.site-header')?.classList.toggle('scrolled',scrollY>20)},{passive:true});</script>`;
 }
 
 /**
@@ -266,7 +318,7 @@ export function buildFooter(apps = []) {
           ${escapeHtml(developer.tagline)}. Independent iOS developer based in Vietnam, building tools for focused work and everyday life.
         </p>
         <p style="margin-top: 16px;">
-          <a href="mailto:${developer.email}" style="color: var(--accent); border-bottom: 1px solid currentColor; padding-bottom: 1px;">${developer.email}</a>
+          <a href="mailto:${developer.email}" class="link-animated" style="color: var(--ink-soft); padding-bottom: 1px;">${developer.email}</a>
         </p>
       </div>
       <div class="footer-col">

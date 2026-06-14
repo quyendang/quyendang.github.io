@@ -15,10 +15,10 @@ export const config = {
   // ============ THÔNG TIN BRAND ============
   brand: {
     logo: '⚡',                          // Emoji hoặc URL logo
-    primaryColor: '#0A0A0A',
+    primaryColor: '#0F0F0D',
     accentColor: '#FF5A1F',              // Cam đậm - phong cách bold
     bgColor: '#FAFAF7',                  // Off-white ấm
-    textColor: '#1A1A1A',
+    textColor: '#0F0F0D',
   },
 
   // ============ THÔNG TIN PRIVACY POLICY ============
@@ -63,7 +63,7 @@ export const config = {
 
   // ============ DEPLOYMENT ============
   deployment: {
-    baseUrl: 'https://quyendang.dev',    // ⚠️ Đổi thành domain thật
+    baseUrl: 'https://quyendang.github.io',    // GitHub Pages user site
     // GitHub Pages: https://username.github.io/repo-name
   },
 };

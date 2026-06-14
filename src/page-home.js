@@ -28,9 +28,10 @@ const homeCss = `
 }
 
 .hero-title {
-  font-size: clamp(48px, 9vw, 120px);
+  font-size: clamp(52px, 10vw, 128px);
   margin-bottom: 32px;
   max-width: 900px;
+  line-height: 0.9;
 }
 
 .hero-title .accent {
@@ -42,7 +43,7 @@ const homeCss = `
   display: flex;
   gap: 60px;
   align-items: end;
-  margin-top: 60px;
+  margin-top: 80px;
   padding-top: 24px;
   border-top: 1px solid var(--line);
   flex-wrap: wrap;
@@ -81,7 +82,7 @@ const homeCss = `
   align-items: end;
   margin-bottom: 48px;
   padding-bottom: 24px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 2px solid var(--line);
 }
 
 .section-title {
@@ -108,34 +109,22 @@ const homeCss = `
 
 .app-card {
   background: var(--bg);
-  padding: 40px 36px;
+  padding: 36px 32px;
   display: flex;
   gap: 24px;
   align-items: start;
-  transition: background 0.3s, transform 0.3s;
+  transition: background 0.2s, border-color 0.2s;
   position: relative;
   overflow: hidden;
+  border-left: 3px solid transparent;
 }
 
-.app-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--accent);
-  transform: translateY(101%);
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-  z-index: 0;
+.app-card:hover {
+  background: var(--accent-dim);
+  border-left-color: var(--accent);
 }
 
-.app-card:hover::before { transform: translateY(0); }
-
-.app-card:hover { color: var(--bg); }
-.app-card:hover .app-meta-tag { 
-  border-color: rgba(255,255,255,0.3);
-  color: rgba(255,255,255,0.85);
-}
-.app-card:hover .app-tagline { color: rgba(255,255,255,0.85); }
-.app-card:hover .app-arrow { transform: translate(8px, -8px); }
+.app-card:hover .app-arrow { transform: translate(8px, -8px); color: var(--accent); }
 
 .app-card > * { position: relative; z-index: 1; }
 
@@ -144,7 +133,7 @@ const homeCss = `
   height: 96px;
   border-radius: 22px;
   flex-shrink: 0;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-md);
   background: #fff;
 }
 
@@ -162,10 +151,8 @@ const homeCss = `
   margin-bottom: 8px;
 }
 
-.app-card:hover .app-number { color: rgba(255,255,255,0.6); }
-
 .app-name {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
   letter-spacing: -0.01em;
   margin-bottom: 8px;
@@ -194,8 +181,8 @@ const homeCss = `
   letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 4px 10px;
-  border: 1px solid var(--line-soft);
   border-radius: 100px;
+  background: var(--line-faint);
   color: var(--ink-soft);
   font-weight: 500;
 }
@@ -209,8 +196,6 @@ const homeCss = `
   transition: transform 0.3s, color 0.3s;
   z-index: 2;
 }
-
-.app-card:hover .app-arrow { color: var(--bg); }
 
 /* ============ ABOUT SECTION ============ */
 .about-section {
@@ -336,7 +321,7 @@ ${buildHeader('/')}
         <p>I'm <em>Quyen Dang</em>, an indie developer based in the misty highlands of Đà Lạt, Vietnam.</p>
         <p>I build small, deliberate iOS apps — the kind that earn a permanent spot on your home screen. Every app here is crafted by one person, with care for detail and respect for your privacy.</p>
         <p style="font-size: 16px; font-family: 'Inter Tight', sans-serif; color: var(--ink-soft); margin-top: 32px;">
-          For collaborations, feedback, or support requests, write to <a href="mailto:${config.developer.email}" style="color: var(--accent); border-bottom: 1px solid currentColor;">${config.developer.email}</a>
+          For collaborations, feedback, or support requests, write to <a href="mailto:${config.developer.email}" class="link-animated" style="color: var(--ink-soft);">${config.developer.email}</a>
         </p>
       </div>
     </div>

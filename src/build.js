@@ -117,8 +117,17 @@ async function build() {
 
   // 2. Fetch apps + parse pending apps
   console.log('📡 Loading apps...');
-  const apps = await loadOrFetchApps();
-  const pendingApps = parsePendingApps();
+  const rawApps = await loadOrFetchApps();
+  // Dedupe theo slug (cache có thể chứa duplicate do iTunes API trả về cả iPhone + iPad entries)
+  const seenSlugs = new Set();
+  const apps = rawApps.filter(app => {
+    if (seenSlugs.has(app.slug)) return false;
+    seenSlugs.add(app.slug);
+    return true;
+  });
+  // Loại pending apps đã được Apple duyệt và có trong apps rồi
+  const appSlugs = new Set(apps.map(a => a.slug));
+  const pendingApps = parsePendingApps().filter(p => !appSlugs.has(p.slug));
   console.log(`   ✓ ${apps.length} apps loaded${pendingApps.length ? `, ${pendingApps.length} pending` : ''}\n`);
   
   // 3. Build homepage

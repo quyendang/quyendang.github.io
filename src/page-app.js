@@ -71,7 +71,7 @@ const appCss = `
 }
 
 .app-hero-title {
-  font-size: clamp(40px, 6vw, 72px);
+  font-size: clamp(44px, 7vw, 80px);
   margin-bottom: 16px;
   line-height: 1;
 }
@@ -82,7 +82,7 @@ const appCss = `
   font-style: italic;
   margin-bottom: 32px;
   font-family: 'Fraunces', serif;
-  font-weight: 400;
+  font-weight: 300;
   max-width: 600px;
 }
 
@@ -105,12 +105,13 @@ const appCss = `
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.02em;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-primary:hover {
   background: var(--accent);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-primary svg { width: 22px; height: 22px; }
@@ -131,7 +132,7 @@ const appCss = `
   display: flex;
   gap: 32px;
   padding-top: 24px;
-  border-top: 1px solid var(--line-soft);
+  border-top: 2px solid var(--line-soft);
   flex-wrap: wrap;
 }
 
@@ -225,7 +226,7 @@ const appCss = `
 }
 
 .screenshots-rail::-webkit-scrollbar-thumb {
-  background: var(--ink-soft);
+  background: var(--accent);
   border-radius: 3px;
 }
 
@@ -233,15 +234,15 @@ const appCss = `
   flex: 0 0 auto;
   width: 280px;
   height: 600px;
-  border-radius: 36px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15), 0 4px 12px rgba(0,0,0,0.08);
+  border-radius: 32px;
+  box-shadow: var(--shadow-lg);
   scroll-snap-align: start;
   background: #f0f0f0;
   object-fit: cover;
-  transition: transform 0.4s;
+  transition: transform 0.4s, box-shadow 0.4s;
 }
 
-.screenshot:hover { transform: scale(1.02); }
+.screenshot:hover { transform: scale(1.02); box-shadow: var(--shadow-lg); }
 
 @media (max-width: 640px) {
   .screenshot { width: 220px; height: 470px; }
@@ -251,8 +252,6 @@ const appCss = `
 .info-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--line-soft);
   border: 1px solid var(--line-soft);
   margin-top: 32px;
 }
@@ -264,7 +263,12 @@ const appCss = `
 .info-cell {
   background: var(--bg);
   padding: 24px 20px;
+  border-right: 1px solid var(--line-faint);
+  border-bottom: 1px solid var(--line-faint);
 }
+
+.info-cell:nth-child(4n) { border-right: none; }
+.info-cell:nth-last-child(-n+4) { border-bottom: none; }
 
 .info-cell-label {
   font-size: 10px;

@@ -50,12 +50,12 @@ const legalCss = `
 
 .legal-content {
   padding: 60px 0 0;
-  max-width: 760px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
 .legal-section-block {
-  margin-bottom: 56px;
+  margin-bottom: 64px;
   display: grid;
   grid-template-columns: 80px 1fr;
   gap: 24px;
@@ -82,8 +82,8 @@ const legalCss = `
 }
 
 .legal-section-content p {
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: 17px;
+  line-height: 1.8;
   color: var(--ink-soft);
   margin-bottom: 16px;
   white-space: pre-wrap;
@@ -138,7 +138,7 @@ const legalCss = `
 }
 
 .faq-question {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 500;
   margin-bottom: 12px;
   cursor: pointer;
@@ -162,10 +162,11 @@ const legalCss = `
 details[open] .faq-question::after { transform: rotate(45deg); }
 
 .faq-answer {
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 1.75;
   color: var(--ink-soft);
   margin-top: 8px;
+  padding-bottom: 8px;
 }
 
 /* ============ CONTACT BOX ============ */
@@ -174,7 +175,7 @@ details[open] .faq-question::after { transform: rotate(45deg); }
   padding: 32px;
   background: var(--ink);
   color: var(--bg);
-  border-radius: 4px;
+  border-radius: var(--radius-md);
 }
 
 .contact-box h3 {
